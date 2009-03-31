@@ -8,8 +8,8 @@
 #
 
 require 'pit'
-require 'irc_client'
-require 'skype_client'
+require '../lib/irc_client'
+require '../lib/skype_client'
 
 class SkypeIrcGateway
 	def initialize(config)
