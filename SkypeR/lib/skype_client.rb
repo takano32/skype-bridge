@@ -16,7 +16,7 @@ class SimpleSkypeClient
 		SkypeAPI.attachWait
 		@chat_id = chat_id
 		@stop = false
-		@@messages = []
+		@messages = []
 	end
 
 	def send_message(msg)
@@ -31,12 +31,18 @@ class SimpleSkypeClient
 	def start
 		raise unless @block
 		SkypeAPI::ChatMessage.setNotify :Status, 'RECEIVED' do |msg|
-			@@messages.push(msg)
+			@messages.push(msg)
 		end
 		@thread = Thread.start do
 			until (@stop)
 				puts "#{self.class.name}: polling" if $DEBUG
 				SkypeAPI.polling
+				while(msg = @messages.pop) do
+					channel = msg.getChat.dup
+					name = msg.getFrom.dup
+					message = msg.getBody.dup
+					@block.call(channel, name, message)
+				end
 				Thread.pass
 				sleep 0.5
 			end
@@ -75,12 +81,6 @@ if __FILE__ == $0 then
 		puts "#{self.class.name}: loop" if $DEBUG
 		Thread.pass
 		sleep 0.5
-		while(msg = client.messages.pop) do
-			channel = msg.getChat.dup
-			name = msg.getFrom.dup
-			message = msg.getBody.dup
-			@block.call(channel, name, message)
-		end
 	end
 	client.stop
 

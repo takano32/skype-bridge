@@ -24,7 +24,7 @@ class SimpleIrcClient
 			p "Sending command..... :#{cmd}" if $DEBUG
 			s = cmd[0...510] + @eol
 			@irc.write(s)
-			sleep 0.3 # prevent Excess Flood
+			sleep 0.6 # prevent Excess Flood
 		end
 	end
 
