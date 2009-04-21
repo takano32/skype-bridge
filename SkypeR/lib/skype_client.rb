@@ -42,13 +42,15 @@ class SimpleSkypeClient
 				SkypeAPI.polling
 				Thread.pass
 				sleep 0.56789
-				@mutex.synchronize do
-					while(msg = @messages.pop) do
-						channel = msg.getChat.dup
-						name = msg.getFrom.dup
-						message = msg.getBody.dup
-						@block.call(channel, name, message)
+				loop do
+					@mutex.synchronize do
+						msg = @messages.pop
 					end
+					break until msg
+					channel = msg.getChat.dup
+					name = msg.getFrom.dup
+					message = msg.getBody.dup
+					@block.call(channel, name, message)
 				end
 			end
 		end
