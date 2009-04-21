@@ -41,9 +41,10 @@ class SimpleSkypeClient
 			until (@stop)
 				puts "#{self.class.name}: polling" if $DEBUG
 				SkypeAPI.polling
+				Thread.pass
+				sleep 0.56789
 				loop do
-					Thread.pass
-					sleep 0.56789
+					msg = nil
 					@mutex.synchronize do
 						msg = @messages.pop
 					end
