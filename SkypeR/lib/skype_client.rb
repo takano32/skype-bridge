@@ -8,6 +8,7 @@
 
 require 'rubygems'
 require 'skypeapi'
+require 'thread'
 
 class SimpleSkypeClient
 	attr_accessor :messages
