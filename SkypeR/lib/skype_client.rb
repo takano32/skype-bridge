@@ -47,7 +47,6 @@ class SimpleSkypeClient
 					message = msg.getBody.dup
 					@block.call(channel, name, message)
 				end
-				Thread.pass
 				sleep 0.056789
 			end
 		end
@@ -83,7 +82,6 @@ if __FILE__ == $0 then
 
 	loop do
 		puts "#{self.class.name}: loop" if $DEBUG
-		Thread.pass
 		sleep 0.5
 	end
 	client.stop
