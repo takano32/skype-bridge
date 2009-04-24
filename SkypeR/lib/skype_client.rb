@@ -18,6 +18,7 @@ class SimpleSkypeClient
 		@chat_id = chat_id
 		@stop = false
 		@messages = []
+		@mutex = Mutex.new
 	end
 
 	def send_message(msg)
@@ -32,20 +33,22 @@ class SimpleSkypeClient
 	def start
 		raise unless @block
 		SkypeAPI::ChatMessage.setNotify :Status, 'RECEIVED' do |msg|
-			@messages.push(msg)
+			@mutex.synchronize do
+				@messages.push(msg)
+			end
 		end
 		@thread = Thread.start do
 			until (@stop)
 				puts "#{self.class.name}: polling" if $DEBUG
 				SkypeAPI.polling
-				Thread.pass
-				sleep 0.56789
 				while (msg = @messages.pop) do
 					channel = msg.getChat.dup
 					name = msg.getFrom.dup
 					message = msg.getBody.dup
 					@block.call(channel, name, message)
 				end
+				Thread.pass
+				sleep 0.056789
 			end
 		end
 	end

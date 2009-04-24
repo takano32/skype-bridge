@@ -24,6 +24,7 @@ class SimpleIrcClient
 			p "Sending command..... :#{cmd}" if $DEBUG
 			s = cmd[0...510] + @eol
 			@irc.write(s)
+			Thread.pass
 			sleep 0.6 # prevent Excess Flood
 		end
 	end
@@ -56,7 +57,6 @@ class SimpleIrcClient
 					message = msg[3..-1].join(' ')[1..-1]
 					@block.call(channel, name, message)
 				end
-
 			end
 		end
 		login_and_join
