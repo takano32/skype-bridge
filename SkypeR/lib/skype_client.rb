@@ -41,7 +41,7 @@ class SimpleSkypeClient
 			until (@stop)
 				puts "#{self.class.name}: polling" if $DEBUG
 				SkypeAPI.polling
-				while (msg = @messages.pop) do
+				while (msg = @messages.shift) do
 					channel = msg.getChat.dup
 					name = msg.getFrom.dup
 					message = msg.getBody.dup
