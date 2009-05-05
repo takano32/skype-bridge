@@ -41,6 +41,7 @@ class SimpleSkypeClient
 			until (@stop)
 				puts "#{self.class.name}: polling" if $DEBUG
 				SkypeAPI.polling
+				# SkypeAPI::searchRecentChats
 				while (msg = @messages.shift) do
 					channel = msg.getChat.dup
 					name = msg.getFrom.dup
