@@ -39,15 +39,16 @@ class SimpleSkypeClient
 		end
 		@thread = Thread.start do
 			until (@stop)
+				SkypeAPI::searchRecentChats
 				puts "#{self.class.name}: polling" if $DEBUG
 				SkypeAPI.polling
-				# SkypeAPI::searchRecentChats
-				while (msg = @messages.shift) do
+				if (msg = @messages.shift) do
 					channel = msg.getChat.dup
 					name = msg.getFrom.dup
 					message = msg.getBody.dup
 					@block.call(channel, name, message)
 				end
+				Thread.pass
 				sleep 0.056789
 			end
 		end
