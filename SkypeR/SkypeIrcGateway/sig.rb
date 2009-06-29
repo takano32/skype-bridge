@@ -26,26 +26,14 @@ class SkypeIrcGateway
 	def skype_initialize
 		@skype_client.receive_message do |channel, name, message|
 			message.each_line do |msg|
-				if @prev_irc_name == name then
-					msg = "#{msg}"
-				else
-					@prev_irc_name = name
-					msg = "#{name}\n#{msg}"
-				end
-				@irc_client.send_message(msg) if @skype_chat == channel.to_s
+				@irc_client.send_message("#{name} > #{msg}") if @skype_chat == channel.to_s
 			end
 		end
 	end
 
 	def irc_initialize
 		@irc_client.receive_message do |channel, name, message|
-			if @prev_skype_name == name then
-				msg = " > #{message}"
-			else
-				@prev_skype_name = name
-				msg = "(swear) #{name}\n > #{message}"
-			end
-			@skype_client.send_message(msg) if @irc_chat == channel
+			@skype_client.send_message("(swear) #{name} > #{message}") if @irc_chat == channel
 		end
 	end
 
