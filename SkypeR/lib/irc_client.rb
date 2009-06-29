@@ -69,14 +69,16 @@ end
 
 
 if __FILE__ == $0 then
-	channel = '#hackerscafe'
+	channel = '#LL'
 	name = '_32skype'
 	client = SimpleIrcClient.new(channel, name)
 	client.receive_message do |channel, name, message|
 		puts("(swear) #{name}:  #{message}") unless channel == name
 	end
 	client.start
-	client.send_message('hoge fuga')
+	100.times do |i|
+		client.send_message("Line ##{i} - This is the test of Excess Flood")
+	end
 	client.stop
 end
 
