@@ -39,13 +39,16 @@ class SkypeIrcGateway
 
 	def irc_initialize
 		@irc_client.receive_message do |channel, name, message|
+			break unless @irc_chat == channel
 			if @prev_skype_name == name then
 				msg = " > #{message}"
+				@skype_client.send_message(msg)
 			else
 				@prev_skype_name = name
-				msg = "(swear) #{name}\n > #{message}"
+				@skype_client.send_message("(swear) #{name}")
+				@skype_client.send_message(" > #{message}")
+
 			end
-			@skype_client.send_message(msg) if @irc_chat == channel
 		end
 	end
 
