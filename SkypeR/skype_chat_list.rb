@@ -3,17 +3,17 @@
 # Skypeチャットのチャンネル一覧を表示する
 
 require 'rubygems'
-require 'skypeapi'
+require 'Skype'
 require 'nkf'
 
 def decode(s)
 	NKF.nkf('-Ws', s)
 end
 
-SkypeAPI.init
-SkypeAPI.attachWait
+Skype.init('SkypeChatList')
+Skype.start_messageloop
 
-chats = SkypeAPI::searchRecentChats
+chats = Skype.searchRecentChats
 chats.each do |chat|
 	name = decode(chat.getName)
 	topic = decode(chat.getTopic)
