@@ -12,12 +12,15 @@ end
 
 Skype.init('SkypeChatList')
 Skype.start_messageloop
+Skype.attach_wait
 
 chats = Skype.searchRecentChats
 chats.each do |chat|
-	name = decode(chat.getName)
+	name = chat.to_s
 	topic = decode(chat.getTopic)
 	puts "#{name} - #{topic}"
 	# SkypeAPI::ChatMessage.create(chat.getName, "ほげ")
 end
+
+
 
