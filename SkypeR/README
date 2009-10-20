@@ -28,3 +28,7 @@ Skype APIを使うためSkypeの起動が必要
 == 制限事項
 * Ruby4Skypeの仕様だと思うのですが、シグナルのトラップが無効になるため、強制終了しなければ終了できません
 
+
+* Ruby4Skype
+  * http://rubyforge.org/projects/skyperapper
+  * http://skyperapper.rubyforge.org/
