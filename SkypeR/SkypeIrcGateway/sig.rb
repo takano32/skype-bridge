@@ -7,6 +7,7 @@
 # 建設予定地
 #
 
+require 'rubygems'
 require 'pit'
 require '../lib/irc_client'
 require '../lib/skype_client'

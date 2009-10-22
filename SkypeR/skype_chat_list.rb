@@ -3,7 +3,7 @@
 # Skypeチャットのチャンネル一覧を表示する
 
 require 'rubygems'
-require 'Skype'
+require 'skype'
 require 'nkf'
 
 def decode(s)

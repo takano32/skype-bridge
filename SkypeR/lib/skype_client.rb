@@ -1,28 +1,26 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
-# 
+# SimpleSkypeClient
 # Copyright (c) 2009 TAKANO Mitsuhiro <tak at no32.tk>
 #
-# http://june29.jp/2008/04/23/ruby4skype/
 
 
 require 'rubygems'
-require 'skypeapi'
+require 'skype'
 require 'thread'
 
 class SimpleSkypeClient
 	attr_accessor :messages
 	def initialize(chat_id)
-		SkypeAPI.init
-		SkypeAPI.attachWait
+		Skype.init('SimpleSkypeClient')
+		Skype.start_messageloop
+		Skype.attach_wait
 		@chat_id = chat_id
 		@stop = false
-		@messages = []
-		@mutex = Mutex.new
 	end
 
 	def send_message(msg)
-		SkypeAPI::ChatMessage.create(@chat_id, msg)
+		Skype::ChatMessage.create(@chat_id, msg)
 	end
 
 	def receive_message(&block)
@@ -32,31 +30,16 @@ class SimpleSkypeClient
 
 	def start
 		raise unless @block
-		SkypeAPI::ChatMessage.setNotify :Status, 'RECEIVED' do |msg|
-			@mutex.synchronize do
-				@messages.push(msg)
-			end
-		end
-		@thread = Thread.start do
-			until (@stop)
-				SkypeAPI::searchRecentChats
-				puts "#{self.class.name}: polling" if $DEBUG
-				SkypeAPI.polling
-				if (msg = @messages.shift) then
-					channel = msg.getChat.dup
-					name = msg.getFrom.dup
-					message = msg.getBody.dup
-					@block.call(channel, name, message)
-				end
-				Thread.pass
-				sleep 0.056789
-			end
+		Skype::ChatMessage.set_notify :Status, 'RECEIVED' do |msg|
+				channel = msg.get_chat.dup
+				name = msg.get_from.dup
+				message = msg.get_body.dup
+				@block.call(channel, name, message)
 		end
 	end
 
 	def stop
 		@stop = true
-		@thread.join
 	end
 end
 
