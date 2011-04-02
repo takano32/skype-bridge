@@ -15,6 +15,9 @@ from_lingr = json.JsonReader().read(request_content)
 
 print "Content-Type: text/plain"
 print
-# print pp.pformat(from_lingr)
 
+#for event in from_lingr['events']:
+#	print event['message']['text']
 
+# for debug
+#print pp.pformat(from_lingr)
