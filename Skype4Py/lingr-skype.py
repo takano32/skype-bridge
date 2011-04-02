@@ -1,3 +1,4 @@
+#! /usr/bin/env python
 import cgi
 import json
 
@@ -10,8 +11,10 @@ import sys
 content_length = int(os.environ['CONTENT_LENGTH'])
 request_content = sys.stdin.read(content_length)
 
-from_lingr = json.loads(request_content)
+from_lingr = json.JsonReader().read(request_content)
 
-print pp.pformat(from_lingr)
+print "Content-Type: text/plain"
+print
+# print pp.pformat(from_lingr)
 
 
