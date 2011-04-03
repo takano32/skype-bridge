@@ -5,7 +5,7 @@ config.filename = "skype-lingr.conf"
 
 config['lingr'] = {'verifier': 'hoge'}
 
-config['arakawatomonori'] = {'skype': 'hoge', 'lingr': 'arakawatomonori'}
+config['arakawatomonori'] = {'skype': '#yuiseki/$4425ae72bc11c305', 'lingr': 'arakawatomonori'}
 config['pirate'] = {'skype': 'foo', 'lingr': 'pirate'}
 
 # config.write()

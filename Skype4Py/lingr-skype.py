@@ -18,6 +18,12 @@ print
 
 #for event in from_lingr['events']:
 #	print event['message']['text']
+# (swear)
+
+
+
+
+
 
 # for debug
 #print pp.pformat(from_lingr)
