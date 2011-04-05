@@ -28,21 +28,18 @@ def handler(msg, event):
 	pass
 
 def send_message(room, text):
-	#print text
 	skype = Skype4Py.Skype()
 	skype.OnMessageStatus = handler
 	skype.Attach()
-	#print room
 	room = skype.Chat(room)
-	res = room.SendMessage(text)
-	#print res
+	room.SendMessage(text)
 	exit()
 
 for event in from_lingr['events']:
 	for key in config:
 		if key == 'lingr' or key == 'skype':
 			continue
-		if event['message']['room'] == key:
+		if event['message']['room'] == config[key]['lingr']:
 			text = event['message']['text']
 			name = event['message']['nickname']
 			name = event['message']['speaker_id']
