@@ -9,14 +9,12 @@ import urllib, urllib2
 import cgi
 from configobj import ConfigObj
 
-config = ConfigObj("skype-lingr.conf")
 
 os.environ['DISPLAY'] = ":32"
 os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
 pp = pprint.PrettyPrinter(indent = 4)
 
-def send_message(room, text):
-    verifier = config['lingr']['verifier']
+def send_message(room, text, verifier):
     request = "http://lingr.com/api/room/say?room=%s&bot=%s&text=%s&bot_verifier=%s"
     text = urllib.quote_plus(text.encode('utf-8'))
     request  = request % (room, 'skype', text, verifier)
@@ -24,6 +22,7 @@ def send_message(room, text):
 
 def handler(msg, event):
     if event == u"RECEIVED":
+        config = ConfigObj("skype-lingr.conf")
         for key in config:
             if key == 'lingr' or key == 'skype':
                 continue
@@ -32,7 +31,8 @@ def handler(msg, event):
                 if len(name) == 0:
                     name = msg.Sender.Handle
                 text = "%s: %s" % (name, msg.Body)
-                send_message(config[key]['lingr'], text)
+                verifier = config['lingr']['verifier']
+                send_message(config[key]['lingr'], text, verifier)
 
 def bridge():
     skype = Skype4Py.Skype()
