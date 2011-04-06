@@ -43,7 +43,7 @@ for event in from_lingr['events']:
 			text = event['message']['text']
 			name = event['message']['nickname']
 			name = event['message']['speaker_id']
-			text = '%s : %s' % (name, text)
+			text = '%s: %s' % (name, text)
 			room = config[key]['skype']
 			send_message(room, text)
 	print
