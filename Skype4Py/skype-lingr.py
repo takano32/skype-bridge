@@ -30,10 +30,10 @@ def handler(msg, event):
                 name = msg.Sender.FullName
                 if len(name) == 0:
                     name = msg.Sender.Handle
-		if config[key].has_key('skype.prefix'):
-                	prefix = config[key]['skype.prefix']
-		else:
-			prefix = ""
+                if config[key].has_key('skype.prefix'):
+                    prefix = config[key]['skype.prefix']
+                else:
+                    prefix = ""
                 text = "%s%s: %s" % (prefix, name, msg.Body)
                 verifier = config['lingr']['verifier']
                 send_message(config[key]['lingr'], text, verifier)
