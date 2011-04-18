@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+# -*- coding: utf-8 -*-
 import cgi
 import json
 
@@ -7,6 +8,7 @@ pp = pprint.PrettyPrinter(indent = 4)
 
 import os
 import sys
+import re
 
 os.environ['DISPLAY'] = ":32"
 os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
@@ -42,7 +44,8 @@ for event in from_lingr['events']:
 		if event['message']['room'] == config[key]['lingr']:
 			text = event['message']['text']
 			name = event['message']['nickname']
-			name = event['message']['speaker_id']
+			if re.compile('荒.*?川.*?智.*?則').match(name):
+				name = event['message']['speaker_id']
 			text = '%s: %s' % (name, text)
 			room = config[key]['skype']
 			send_message(room, text)
