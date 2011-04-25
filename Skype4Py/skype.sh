@@ -13,8 +13,12 @@ XAUTHORITY=$XAUTHFILE sh -c \
 
 
 
-sudo -u www-data python skype-lingr.py
+sudo -u www-data  XAUTHORITY=/var/www/.Xauthority DISPLAY=:32 python skype-lingr.py
 
 
 sudo -u www-data  XAUTHORITY=/var/www/.Xauthority DISPLAY=:32 python chat_list.py
+
+sudo -u www-data  XAUTHORITY=/var/www/.Xauthority DISPLAY=:32 vncviewer
+
+
 

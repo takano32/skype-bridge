@@ -28,7 +28,7 @@ def handler(msg, event):
                 continue
             if msg.ChatName == config[key]['skype']:
                 name = msg.Sender.FullName
-                if len(name) == 0:
+                if len(name) == 0 or len(name) > 16:
                     name = msg.Sender.Handle
                 if config[key].has_key('skype.prefix'):
                     prefix = config[key]['skype.prefix']

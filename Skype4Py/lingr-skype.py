@@ -46,6 +46,8 @@ for event in from_lingr['events']:
 			name = event['message']['nickname']
 			if re.compile('荒.*?川.*?智.*?則').match(name):
 				name = event['message']['speaker_id']
+			if len(name) > 16:
+				name = event['message']['speaker_id']
 			text = '%s: %s' % (name, text)
 			room = config[key]['skype']
 			send_message(room, text)
