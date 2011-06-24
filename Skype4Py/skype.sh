@@ -13,7 +13,7 @@ XAUTHORITY=$XAUTHFILE sh -c \
 
 
 
-sudo -u www-data  XAUTHORITY=/var/www/.Xauthority DISPLAY=:32 python skype-lingr.py
+while :; do sudo -u www-data  XAUTHORITY=/var/www/.Xauthority DISPLAY=:32 python skype-lingr.py; done
 
 
 sudo -u www-data  XAUTHORITY=/var/www/.Xauthority DISPLAY=:32 python chat_list.py

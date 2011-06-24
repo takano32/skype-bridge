@@ -1,5 +1,9 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
+import sys
+sys.path.insert(0, '/usr/lib/pymodules/python2.5')
+sys.path.append('/usr/lib/pymodules/python2.5/gtk-2.0')
+
 import cgi
 import json
 
@@ -7,7 +11,6 @@ import pprint
 pp = pprint.PrettyPrinter(indent = 4)
 
 import os
-import sys
 import re
 
 os.environ['DISPLAY'] = ":32"

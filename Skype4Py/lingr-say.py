@@ -1,4 +1,6 @@
 #-*- coding: utf-8 -*-
+import sys
+sys.path.insert(0, '/usr/lib/pymodules/python2.5')
 import urllib, urllib2
 import cgi
 

@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
-
+import sys
+sys.path.append('/usr/lib/pymodules/python2.5')
+sys.path.append('/usr/lib/pymodules/python2.5/gtk-2.0')
 import Skype4Py
 import time
 import pprint
