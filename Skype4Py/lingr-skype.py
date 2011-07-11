@@ -12,6 +12,7 @@ pp = pprint.PrettyPrinter(indent = 4)
 
 import os
 import re
+import time
 
 os.environ['DISPLAY'] = ":32"
 os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
@@ -19,12 +20,12 @@ os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
 import Skype4Py
 
 from configobj import ConfigObj
-config = ConfigObj("/home/takano32/workspace/irc-gateway/Skype4Py/skype-lingr.conf")
+config = ConfigObj("/home/takano32/workspace/skype-lingr-bridge/Skype4Py/skype-lingr.conf")
 
 content_length = int(os.environ['CONTENT_LENGTH'])
 request_content = sys.stdin.read(content_length)
 
-from_lingr = json.JsonReader().read(request_content)
+from_lingr = json.JSONDecoder().decode(request_content)
 
 print "Content-Type: text/plain"
 print
@@ -38,7 +39,7 @@ def send_message(room, text):
 	skype.Attach()
 	room = skype.Chat(room)
 	room.SendMessage(text)
-	exit()
+	time.sleep(3000)
 
 for event in from_lingr['events']:
 	for key in config:
@@ -47,7 +48,7 @@ for event in from_lingr['events']:
 		if event['message']['room'] == config[key]['lingr']:
 			text = event['message']['text']
 			name = event['message']['nickname']
-			if re.compile('荒.*?川.*?智.*?則').match(name):
+			if re.compile(u'荒.*?川.*?智.*?則').match(name):
 				name = event['message']['speaker_id']
 			if len(name) > 16:
 				name = event['message']['speaker_id']
@@ -55,6 +56,8 @@ for event in from_lingr['events']:
 			room = config[key]['skype']
 			send_message(room, text)
 	print
+
+exit()
 
 # for debug
 #print pp.pformat(from_lingr)

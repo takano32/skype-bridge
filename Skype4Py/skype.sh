@@ -11,14 +11,13 @@ XAUTHORITY=$XAUTHFILE sh -c \
 #  "/usr/bin/nohup $SKYPE &"
 
 
+sudo su - www-data;LANG=C XAUTHORITY=/var/www/.Xauthority /usr/bin/dbus-launch tightvncserver :32
 
+LANG=C XAUTHORITY=/var/www/.Xauthority DISPLAY=:32 nohup /usr/bin/dbus-launch /usr/bin/skype
 
 while :; do sudo -u www-data  XAUTHORITY=/var/www/.Xauthority DISPLAY=:32 python skype-lingr.py; done
-
 
 sudo -u www-data  XAUTHORITY=/var/www/.Xauthority DISPLAY=:32 python chat_list.py
 
 sudo -u www-data  XAUTHORITY=/var/www/.Xauthority DISPLAY=:32 vncviewer
-
-
 
