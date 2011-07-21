@@ -29,6 +29,8 @@ def handler(msg, event):
             if key == 'lingr' or key == 'skype':
                 continue
             if msg.ChatName == config[key]['skype']:
+		if len(msg.Body) == 0:
+		    return
                 name = msg.Sender.FullName
                 if len(name) == 0 or len(name) > 16:
                     name = msg.Sender.Handle
