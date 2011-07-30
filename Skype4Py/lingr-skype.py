@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys
-sys.path.insert(0, '/usr/lib/pymodules/python2.5')
+sys.path.append('/usr/lib/pymodules/python2.5')
 sys.path.append('/usr/lib/pymodules/python2.5/gtk-2.0')
 
 import cgi
@@ -52,9 +52,10 @@ for event in from_lingr['events']:
 				name = event['message']['speaker_id']
 			if len(name) > 16:
 				name = event['message']['speaker_id']
-			text = '%s: %s' % (name, text)
 			room = config[key]['skype']
-			send_message(room, text)
+			for line in text.splitlines():
+				msg = '%s: %s' % (name, line)
+				send_message(room, msg)
 	print
 
 exit()

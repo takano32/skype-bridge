@@ -38,9 +38,11 @@ def handler(msg, event):
                     prefix = config[key]['skype.prefix']
                 else:
                     prefix = ""
-                text = "%s%s: %s" % (prefix, name, msg.Body)
+                room = config[key]['lingr']
                 verifier = config['lingr']['verifier']
-                send_message(config[key]['lingr'], text, verifier)
+                for line in msg.Body.splitlines():
+                    msg = '%s%s: %s' % (prefix, name, line)
+                    send_message(room, msg, verifier)
 
 def bridge():
     skype = Skype4Py.Skype()
