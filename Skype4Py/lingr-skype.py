@@ -34,11 +34,11 @@ def handler(msg, event):
 	pass
 
 def send_message(room, text):
-	skype = Skype4Py.Skype()
-	skype.OnMessageStatus = handler
-	skype.Attach()
-	room = skype.Chat(room)
 	room.SendMessage(text)
+
+skype = Skype4Py.Skype()
+skype.OnMessageStatus = handler
+skype.Attach()
 
 for event in from_lingr['events']:
 	for key in config:
@@ -52,6 +52,7 @@ for event in from_lingr['events']:
 			if len(name) > 16:
 				name = event['message']['speaker_id']
 			room = config[key]['skype']
+			room = skype.Chat(room)
 			for line in text.splitlines():
 				msg = '%s: %s' % (name, line)
 				send_message(room, msg)
