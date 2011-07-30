@@ -39,7 +39,6 @@ def send_message(room, text):
 	skype.Attach()
 	room = skype.Chat(room)
 	room.SendMessage(text)
-	time.sleep(3000)
 
 for event in from_lingr['events']:
 	for key in config:
