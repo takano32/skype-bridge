@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
+# vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
 import sys
 sys.path.append('/usr/lib/pymodules/python2.5')
 sys.path.append('/usr/lib/pymodules/python2.5/gtk-2.0')
@@ -31,32 +32,32 @@ print "Content-Type: text/plain"
 print
 
 def handler(msg, event):
-	pass
+    pass
 
 def send_message(room, text):
-	room.SendMessage(text)
+    room.SendMessage(text)
 
 skype = Skype4Py.Skype()
 skype.OnMessageStatus = handler
 skype.Attach()
 
 for event in from_lingr['events']:
-	for key in config:
-		if key == 'lingr' or key == 'skype':
-			continue
-		if event['message']['room'] == config[key]['lingr']:
-			text = event['message']['text']
-			name = event['message']['nickname']
-			if re.compile(u'荒.*?川.*?智.*?則').match(name):
-				name = event['message']['speaker_id']
-			if len(name) > 16:
-				name = event['message']['speaker_id']
-			room = config[key]['skype']
-			room = skype.Chat(room)
-			for line in text.splitlines():
-				msg = '%s: %s' % (name, line)
-				send_message(room, msg)
-	print
+    for key in config:
+        if key == 'lingr' or key == 'skype':
+            continue
+        if event['message']['room'] == config[key]['lingr']:
+            text = event['message']['text']
+            name = event['message']['nickname']
+            if re.compile(u'荒.*?川.*?智.*?則').match(name):
+                name = event['message']['speaker_id']
+            if len(name) > 16:
+                name = event['message']['speaker_id']
+            room = config[key]['skype']
+            room = skype.Chat(room)
+            for line in text.splitlines():
+                msg = '%s: %s' % (name, line)
+                send_message(room, msg)
+    print
 
 exit()
 

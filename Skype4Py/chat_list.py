@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
 # encoding: utf-8
 
 import Skype4Py
@@ -15,7 +16,7 @@ def handler(msg, event):
         # print ""
         print "ChatName %s" % msg.ChatName
         print "Body %s" % msg.Body
-	print ""
+        print ""
 
 def chat_list():
     skype = Skype4Py.Skype()

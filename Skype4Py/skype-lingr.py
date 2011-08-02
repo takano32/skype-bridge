@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
+# vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
 import sys
 sys.path.append('/usr/lib/pymodules/python2.5')
 sys.path.append('/usr/lib/pymodules/python2.5/gtk-2.0')
