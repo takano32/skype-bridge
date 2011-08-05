@@ -47,7 +47,7 @@ def handler(msg, event):
                     send_message(room, text, verifier)
                     if room == 'hametsu_mine' and line == ':minecraft':
                         f = os.popen('python minecraft.py', 'r')
-                        for mc in f.read.splitlines():
+                        for mc in f.read().splitlines():
                             text = '%s%s: %s' % (prefix, 'minecraft', mc)
                             send_message(room, text, verifier)
 
