@@ -46,11 +46,11 @@ def handler(msg, event):
                 for line in msg.Body.splitlines():
                     text = '%s%s: %s' % (prefix, name, line)
                     send_message(room, text, verifier)
-                    if room == 'hametsu_mine' and line == ':minecraft':
-                        mc = Minecraft()
-                        for s in ['holy-grail.jp', '192.168.32.10', 'ariela.jp']:
-                            text = '%s%s: %s' % (prefix, 'minecraft', mc.status(s))
-                            send_message(room, text, verifier)
+                    #if room == 'hametsu_mine' and line == ':minecraft':
+                    #    mc = Minecraft()
+                    #    for s in ['holy-grail.jp', '192.168.32.10', 'ariela.jp']:
+                    #        text = '%s%s: %s' % (prefix, 'minecraft', mc.status(s))
+                    #        send_message(room, text, verifier)
 
 def bridge():
     skype = Skype4Py.Skype()
