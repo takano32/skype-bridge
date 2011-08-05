@@ -22,9 +22,10 @@ class Minecraft():
         elif data['isThundering']:
             weather = '⚡'
         time = self.time(data['servertime'])
-        return "%s [%s] %s" % (server_name, time, weather)
+        return "%-16s [%s] %s" % (server_name, time, weather)
         
 if __name__ == '__main__':
     m = Minecraft()
-    print m.status('no32.tk')
+    for s in ['holy-grail.jp', 'no32.tk', 'ariela.jp']:
+        print m.status(s)
 
