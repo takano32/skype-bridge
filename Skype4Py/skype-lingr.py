@@ -12,6 +12,7 @@ import os
 import urllib, urllib2
 import cgi
 from configobj import ConfigObj
+from minecraft import Minecraft
 
 
 os.environ['DISPLAY'] = ":32"
@@ -46,9 +47,9 @@ def handler(msg, event):
                     text = '%s%s: %s' % (prefix, name, line)
                     send_message(room, text, verifier)
                     if room == 'hametsu_mine' and line == ':minecraft':
-                        f = os.popen('python minecraft.py', 'r')
-                        for mc in f.read().splitlines():
-                            text = '%s%s: %s' % (prefix, 'minecraft', mc)
+                        mc = Minecraft()
+                        for s in ['holy-grail.jp', '192.168.32.10', 'ariela.jp']:
+                            text = '%s%s: %s' % (prefix, 'minecraft', mc.status(s))
                             send_message(room, text, verifier)
 
 def bridge():
