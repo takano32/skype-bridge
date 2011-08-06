@@ -31,9 +31,9 @@ class Minecraft():
         return u"%-16s [%s] %s" % (server_name, time, weather)
 
     def statuses(self):
-        result = u""
+        result = []
         for name, addr in self.servers.items():
-           result += self.status(name, addr) + '\n'
+           result.append(self.status(name, addr))
         return result
             
 
