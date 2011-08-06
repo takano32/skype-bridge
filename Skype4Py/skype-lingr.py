@@ -47,7 +47,7 @@ def handler(msg, event):
                     text = '%s%s: %s' % (prefix, name, line)
                     send_message(room, text, verifier)
                     if room == 'hametsu_mine' and line == ':minecraft':
-                        for status in Minecraft().statuses
+                        for status in Minecraft().statuses():
                             text = '%s%s: %s' % (prefix, 'minecraft', status)
                             send_message(room, text, verifier)
 
