@@ -58,8 +58,8 @@ for event in from_lingr['events']:
                 msg = '%s: %s' % (name, line)
                 send_message(room, msg)
     print
-
-exit()
+skype.ResetCache()
+sleep(3000)
 
 # for debug
 #print pp.pformat(from_lingr)
