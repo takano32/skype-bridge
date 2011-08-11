@@ -7,6 +7,7 @@ sys.path.append('/usr/lib/pymodules/python2.5/gtk-2.0')
 
 import cgi
 import json
+import time
 
 import pprint
 pp = pprint.PrettyPrinter(indent = 4)
@@ -59,7 +60,7 @@ for event in from_lingr['events']:
                 send_message(room, msg)
     print
 skype.ResetCache()
-sleep(3000)
+time.sleep(3000.0)
 
 # for debug
 #print pp.pformat(from_lingr)
