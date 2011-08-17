@@ -22,6 +22,8 @@ VNCサーバとSkypeの起動
   sudo su - 
   while :; do date;sudo -u www-data sh -c 'XAUTHORITY=/var/www/.Xauthority DISPLAY=:32 python skype-lingr.py';date; done
 
+現在ではレポジトリに同梱されている `skype-lingr.sh` というスクリプトで常時起動していることを確認しています
+
 チャットルームの識別子を調べる
 ------------------------------
 
