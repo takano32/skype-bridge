@@ -3,13 +3,13 @@
 
 SkypeとIRCをつなぐゲートウェイです。
 
-:sig.cmd: sig.jsを起動するコマンドファイル
-:sig.js: sig.rbを死活監視するJScript
-:sig.rb: SkypeとIRCのゲートウェイ
-:skype_client.rb: Skypeのインターフェイス
-:irc_client.rb: IRCのインターフェイス
-:twitter_client.rb: Twitterのインターフェイス
-:t2s.rb: TwitterからSkypeにメッセージを流すボット
+:sig.cmd              sig.jsを起動するコマンドファイル
+:sig.js               sig.rbを死活監視するJScript
+:sig.rb               SkypeとIRCのゲートウェイ
+:skype_client.rb      Skypeのインターフェイス
+:irc_client.rb        IRCのインターフェイス
+:twitter_client.rb    Twitterのインターフェイス
+:t2s.rb               TwitterからSkypeにメッセージを流すボット
 
 対象
 ----
@@ -33,16 +33,25 @@ SkypeとIRCをつなぐゲートウェイです。
 予定
 ----
 
-- stg.rb(SkypeとTwitterのゲートウェイ)の作成
+- stg.rb
+ 
+  - SkypeとTwitterのゲートウェイ
 
-- t2s.rb(TwitterからSkypeへの通知)の作成
+- t2s.rb
+  
+  - TwitterからSkypeへの通知
 
 制限事項
 --------
 
 Ruby4Skypeの仕様だと思うのですが、シグナルのトラップが無効になるため、強制終了しなければ終了できません
 
+参照
+----
 
-* Ruby4Skype
-  * http://rubyforge.org/projects/skyperapper
-  * http://skyperapper.rubyforge.org/
+- Ruby4Skype
+
+  - http://rubyforge.org/projects/skyperapper
+
+  - http://skyperapper.rubyforge.org/
+

@@ -5,7 +5,7 @@ Skype4Py
 Skype Lingr Gateway
 ===================
 
-VNC¥µ¡¼¥Ğ¤ÈSkype¤Îµ¯Æ°
+VNCã‚µãƒ¼ãƒã¨Skypeã®èµ·å‹•
 ----------------------
 
 ::
@@ -14,7 +14,7 @@ VNC¥µ¡¼¥Ğ¤ÈSkype¤Îµ¯Æ°
   LANG=C XAUTHORITY=/var/www/.Xauthority /usr/bin/dbus-launch tightvncserver :32
   LANG=C XAUTHORITY=/var/www/.Xauthority DISPLAY=:32 nohup /usr/bin/skype
 
-¥Ç¡¼¥â¥ó¤òµ¯Æ°¤·Â³¤±¤ë
+ãƒ‡ãƒ¼ãƒ¢ãƒ³ã‚’èµ·å‹•ã—ç¶šã‘ã‚‹
 ----------------------
 
 ::
@@ -22,7 +22,7 @@ VNC¥µ¡¼¥Ğ¤ÈSkype¤Îµ¯Æ°
   sudo su - 
   while :; do date;sudo -u www-data sh -c 'XAUTHORITY=/var/www/.Xauthority DISPLAY=:32 python skype-lingr.py';date; done
 
-¥Á¥ã¥Ã¥È¥ë¡¼¥à¤Î¼±ÊÌ»Ò¤òÄ´¤Ù¤ë
+ãƒãƒ£ãƒƒãƒˆãƒ«ãƒ¼ãƒ ã®è­˜åˆ¥å­ã‚’èª¿ã¹ã‚‹
 ------------------------------
 
 ::
