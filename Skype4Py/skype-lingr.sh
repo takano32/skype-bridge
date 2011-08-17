@@ -5,7 +5,7 @@ export DISPLAY=:32
 
 while :;
 do
-  ps a | grep '[s]kype-lingr.py' |fgrep 'sudo -u www-data -E python'
+  ps a | grep '[s]kype-lingr.py' |fgrep 'sudo -u www-data -E python' > /dev/null
   EXISTS=$?
   if [ $EXISTS -ne 0 ]; then
     echo 'CRASH!!!!'
