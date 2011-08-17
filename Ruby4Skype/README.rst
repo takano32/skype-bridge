@@ -1,15 +1,19 @@
-﻿SkypeGateway
+﻿SkypeIrcGateway
 ============
 
-SkypeとIRCをつなぐゲートウェイです。
+SkypeとIRCをつなぐゲートウェイ
 
-:sig.cmd              sig.jsを起動するコマンドファイル
-:sig.js               sig.rbを死活監視するJScript
-:sig.rb               SkypeとIRCのゲートウェイ
-:skype_client.rb      Skypeのインターフェイス
-:irc_client.rb        IRCのインターフェイス
-:twitter_client.rb    Twitterのインターフェイス
-:t2s.rb               TwitterからSkypeにメッセージを流すボット
+===================== ========================================
+ファイル              概要
+===================== ========================================
+sig.cmd               sig.jsを起動するコマンドファイル
+sig.js                sig.rbを死活監視するJScript
+sig.rb                SkypeとIRCのゲートウェイ
+lib/skype_client.rb   Skypeのインターフェイス
+lib/irc_client.rb     IRCのインターフェイス
+lib/twitter_client.rb Twitterのインターフェイス
+t2s.rb                TwitterからSkypeにメッセージを流すボット
+===================== ========================================
 
 対象
 ----
