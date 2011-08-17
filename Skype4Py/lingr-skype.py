@@ -60,7 +60,7 @@ for event in from_lingr['events']:
                 send_message(room, msg)
     print
 skype.ResetCache()
-time.sleep(3000.0)
+time.sleep(1500.0)
 
 # for debug
 #print pp.pformat(from_lingr)
