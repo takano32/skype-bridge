@@ -22,8 +22,8 @@ os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
 import Skype4Py
 
 from configobj import ConfigObj
-# config_path = os.path.join(os.path.dirname(__file__), 'skype-lingr.conf')
-config_path = '/home/takano32/workspace/skype-lingr-bridge/Skype4Py/skype-lingr.conf'
+# config_path = '/home/takano32/workspace/skype-lingr-bridge/Skype4Py/skype-lingr.conf'
+config_path = os.path.join(os.environ['SCRIPT_FILENAME'], 'skype-lingr.conf')
 config = ConfigObj(config_path)
 content_length = int(os.environ['CONTENT_LENGTH'])
 request_content = sys.stdin.read(content_length)
