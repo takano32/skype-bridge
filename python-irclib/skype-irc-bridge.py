@@ -19,16 +19,12 @@ pp = pprint.PrettyPrinter(indent = 4)
 
 SERVER = "irc.freenode.net"
 PORT = 6667
+CHANNEL = "#takano32bot"
 NICKNAME = "skype"
 COLOR_TAG = "\x0310" #aqua
 COLOR_TAG = "\x16" #reverse
 COLOR_TAG = "" #none
 
-CHANNEL = "#sib"
-if sys.argv[1:]:
-	CHANNEL = sys.argv[1]
-
-import re
 from ircbot import SingleServerIRCBot
 from irclib import nm_to_n
 
@@ -50,6 +46,7 @@ def skype_handler(msg, event):
 					for line in msg.Body.splitlines():
 						text = '%s: %s' % (name, line)
 						bot.say(channel, text.encode('utf-8'))
+						time.sleep(len(text) / 20.0)
 
 class SkypeIRCBridge(SingleServerIRCBot):
 	def __init__(self, skype, room, channel = CHANNEL, server = SERVER):
