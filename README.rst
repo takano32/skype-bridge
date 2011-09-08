@@ -5,7 +5,7 @@ Repository for Skype
 "Skype4Py" directory
 ====================
 
-- Skype Lingr Gateway
+- Skype Lingr Bridge
 
   - using Skype4Py
 
@@ -16,4 +16,10 @@ Repository for Skype
   
   - using Ruby4Skype
 
+"python-irclib" directory
+=========================
+
+- Skype IRC Bridge
+
+  - Comming soon...
 
