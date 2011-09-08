@@ -7,8 +7,9 @@
 import sys
 SERVER = "irc.freenode.net"
 PORT = 6667
-NICKNAME = "takano32bot"
-COLOR_TAG = "\x0310" # teal
+NICKNAME = "skype"
+COLOR_TAG = "\x16" #reverse
+COLOR_TAG = "\x0310" #aqua
 
 CHANNEL = "#sib"
 if sys.argv[1:]:
@@ -18,7 +19,7 @@ import re
 from ircbot import SingleServerIRCBot
 from irclib import nm_to_n
 
-class TestBot(SingleServerIRCBot):
+class SkypeIRCBridge(SingleServerIRCBot):
     def __init__(self):
         SingleServerIRCBot.__init__(self, [(SERVER, PORT)], NICKNAME, NICKNAME)
         self.channel = CHANNEL
@@ -34,17 +35,14 @@ class TestBot(SingleServerIRCBot):
 
     def do_command(self, c, e):
         e.nick = nm_to_n(e.source())
-        try:
-            msg = unicode(e.arguments()[0], "utf8")
-            print e.arguments()[0]
-        except Exception, e:
-            self.say(str(e))
+        msg = unicode(e.arguments()[0], "utf8")
+        self.say(msg.encode('utf-8'))
 
     on_pubnotice = do_command
     on_privnotice = do_command
     on_pubmsg = do_command
     on_privmsg = do_command
 
-bot = TestBot()
+bot = SkypeIRCBridge()
 bot.start()
 
