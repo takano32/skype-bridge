@@ -45,7 +45,7 @@ def skype_handler(msg, event):
 					channel = config[key]['irc']
 					for line in msg.Body.splitlines():
 						text = '%s: %s' % (name, line)
-						bot.say(channel, text.encode('utf-8'))
+						bridge.say(channel, text.encode('utf-8'))
 						time.sleep(len(text) / 20.0)
 
 class SkypeIRCBridge(SingleServerIRCBot):
@@ -90,6 +90,6 @@ for key in config:
 	if config[key].has_key('irc'):
 		channel = config[key]['irc']
 		room = config[key]['skype']
-		bot = SkypeIRCBridge(skype, room, channel)
-		bot.start()
+		bridge = SkypeIRCBridge(skype, room, channel)
+		bridge.start()
 
