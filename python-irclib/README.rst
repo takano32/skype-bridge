@@ -5,6 +5,8 @@ python-irclib
 Skype IRC Gateway
 =================
 
+skype-irc-bridge.py
+
 VNCサーバとSkypeの起動
 ----------------------
 
