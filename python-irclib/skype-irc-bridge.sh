@@ -12,6 +12,6 @@ do
     date
     python skype-irc-bridge.py &
   fi
-  sleep 20
+  sleep 5
 done
 
