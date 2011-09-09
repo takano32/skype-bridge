@@ -12,11 +12,8 @@ VNCサーバとSkypeの起動
 
 ::
 
-  sudo su - www-data
-  LANG=C XAUTHORITY=/var/www/.Xauthority /usr/bin/dbus-launch tightvncserver :32
-  LANG=C XAUTHORITY=/var/www/.Xauthority DISPLAY=:32 nohup /usr/bin/skype
-
-- からwww-dataユーザである必要はない
+  /usr/bin/dbus-launch /usr/bin/tightvncserver :64
+  DISPLAY=:64 nohup /usr/bin/skype
 
 デーモンを起動し続ける
 ----------------------
@@ -30,7 +27,7 @@ VNCサーバとSkypeの起動
 
 ::
 
-  sudo -u www-data  XAUTHORITY=/var/www/.Xauthority DISPLAY=:32 python chat_list.py
+  DISPLAY=:64 python chat_list.py
 
 ToDo
 ----
