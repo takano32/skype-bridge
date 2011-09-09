@@ -13,8 +13,8 @@ import time
 import pprint
 from configobj import ConfigObj
 
-os.environ['DISPLAY'] = ":32"
-os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
+os.environ['DISPLAY'] = ":64"
+os.environ['XAUTHORITY'] = "/home/takano32/.Xauthority"
 pp = pprint.PrettyPrinter(indent = 4)
 
 SERVER = "irc.freenode.net"
@@ -49,17 +49,22 @@ def skype_handler(msg, event):
 						time.sleep(len(text) / 20.0)
 
 class SkypeIRCBridge(SingleServerIRCBot):
-	def __init__(self, skype, room, channel = CHANNEL, server = SERVER):
+	def __init__(self, skype, server = SERVER):
 		SingleServerIRCBot.__init__(self, [(SERVER, PORT)], NICKNAME, NICKNAME)
 		self.skype = skype
-		self.room = room
-		self.channel = channel
+		self.channel = CHANNEL
 
 	def on_nicknameinuse(self, c, e):
 		c.nick(c.get_nickname() + "_")
 
 	def on_welcome(self, c, e):
 		c.join(self.channel)
+		for key in config:
+			if key == 'lingr' or key == 'skype' or key == 'irc':
+				continue
+			if config[key].has_key('irc'):
+				channel = config[key]['irc']
+				c.join(channel)
 
 	def say(self, channel, msg):
 		self.connection.privmsg(channel, COLOR_TAG + msg)
@@ -72,8 +77,14 @@ class SkypeIRCBridge(SingleServerIRCBot):
 		e.nick = nm_to_n(e.source())
 		msg = unicode(e.arguments()[0], "utf8")
 		text = '%s: %s' % (e.nick, msg)
-		room = self.skype.Chat(self.room)
-		room.SendMessage(text)
+		for key in config:
+			if key == 'lingr' or key == 'skype' or key == 'irc':
+				continue
+			if config[key].has_key('irc'):
+				channel = config[key]['irc']
+				if channel == e.target():
+					room = self.skype.Chat(config[key]['skype'])
+					room.SendMessage(text)
 
 	on_pubnotice = do_command
 	on_privnotice = do_command
@@ -90,6 +101,6 @@ for key in config:
 	if config[key].has_key('irc'):
 		channel = config[key]['irc']
 		room = config[key]['skype']
-		bridge = SkypeIRCBridge(skype, room, channel)
+		bridge = SkypeIRCBridge(skype)
 		bridge.start()
 
