@@ -13,8 +13,6 @@ import time
 import pprint
 from configobj import ConfigObj
 
-os.environ['DISPLAY'] = ":64"
-os.environ['XAUTHORITY'] = "/home/takano32/.Xauthority"
 pp = pprint.PrettyPrinter(indent = 4)
 
 SERVER = "irc.freenode.net"
