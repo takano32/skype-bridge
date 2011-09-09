@@ -3,6 +3,9 @@
 export XAUTHORITY=/home/takano32/.Xauthority
 export DISPLAY=:64
 
+#export XAUTHORITY=/var/www/.Xauthority
+#export DISPLAY=:32
+
 while :;
 do
   ps a | grep '[s]kype-irc-bridge.py' | fgrep 'python' > /dev/null
