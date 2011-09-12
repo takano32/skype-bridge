@@ -16,7 +16,7 @@ import os
 import re
 import time
 
-os.environ['DISPLAY'] = ":32"
+os.environ['DISPLAY'] = ":16"
 os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
 
 import Skype4Py

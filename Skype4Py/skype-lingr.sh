@@ -1,7 +1,7 @@
 #!/bin/sh
 
 export XAUTHORITY=/var/www/.Xauthority
-export DISPLAY=:32
+export DISPLAY=:16
 
 while :;
 do

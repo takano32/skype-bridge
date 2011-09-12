@@ -15,7 +15,7 @@ from configobj import ConfigObj
 from minecraft import Minecraft
 
 
-os.environ['DISPLAY'] = ":32"
+os.environ['DISPLAY'] = ":16"
 os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
 pp = pprint.PrettyPrinter(indent = 4)
 
