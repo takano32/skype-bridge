@@ -33,6 +33,7 @@ print "Content-Type: text/plain"
 print
 
 if not from_lingr.has_key('events'):
+    print
     exit()
 
 def handler(msg, event):
@@ -67,9 +68,9 @@ for event in from_lingr['events']:
             for line in text.splitlines():
                 msg = '%s: %s' % (name, line)
                 send_message(room, msg)
-    print
 skype.ResetCache()
 time.sleep(1500.0)
+print
 exit()
 # for debug
 #print pp.pformat(from_lingr)

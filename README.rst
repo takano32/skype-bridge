@@ -9,6 +9,13 @@ Repository for Skype
 
   - using Skype4Py
 
+"python-irclib" directory
+-------------------------
+
+- Skype IRC Bridge
+
+  - using python-irclib
+
 "Ruby4Skype" directory
 ======================
 
@@ -16,10 +23,4 @@ Repository for Skype
   
   - using Ruby4Skype
 
-"python-irclib" directory
-=========================
-
-- Skype IRC Bridge
-
-  - Comming soon...
 
