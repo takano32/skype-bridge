@@ -5,19 +5,17 @@ import sys
 sys.path.append('/usr/lib/pymodules/python2.5')
 sys.path.append('/usr/lib/pymodules/python2.5/gtk-2.0')
 
+import os
+os.environ['DISPLAY'] = ":16"
+os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
+
 import cgi
 import json
 import time
+import re
 
 import pprint
 pp = pprint.PrettyPrinter(indent = 4)
-
-import os
-import re
-import time
-
-os.environ['DISPLAY'] = ":16"
-os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
 
 import Skype4Py
 
