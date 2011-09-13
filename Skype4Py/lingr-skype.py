@@ -32,6 +32,9 @@ from_lingr = json.JSONDecoder().decode(request_content)
 print "Content-Type: text/plain"
 print
 
+if not from_lingr.has_key('events'):
+    exit()
+
 def handler(msg, event):
     pass
 
@@ -43,8 +46,14 @@ skype.OnMessageStatus = handler
 skype.Attach()
 
 for event in from_lingr['events']:
+    if not event.has_key('message'):
+        continue
     for key in config:
-        if key == 'lingr' or key == 'skype':
+        if key == 'lingr' or key == 'skype' or key == 'irc':
+            continue
+        if not config[key].has_key('lingr'):
+            continue
+        if not config[key].has_key('skype'):
             continue
         if event['message']['room'] == config[key]['lingr']:
             text = event['message']['text']
