@@ -24,6 +24,10 @@ from configobj import ConfigObj
 # config_path = os.path.join(os.path.dirname(os.environ['SCRIPT_FILENAME']), 'skype-lingr.conf')
 config_path = '/home/takano32/workspace/skype-lingr-bridge/Skype4Py/skype-lingr.conf'
 config = ConfigObj(config_path)
+
+if not os.environ.has_key('CONTENT_LENGTH'):
+    exit()
+
 content_length = int(os.environ['CONTENT_LENGTH'])
 request_content = sys.stdin.read(content_length)
 
@@ -69,7 +73,7 @@ for event in from_lingr['events']:
                 msg = '%s: %s' % (name, line)
                 send_message(room, msg)
 skype.ResetCache()
-time.sleep(1500.0)
+time.sleep(1.5)
 print
 exit()
 # for debug
