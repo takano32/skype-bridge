@@ -37,18 +37,17 @@ def handler(msg, event):
                 name = msg.Sender.FullName
                 if len(name) == 0 or len(name) > 16:
                     name = msg.Sender.Handle
-                if config[key].has_key('skype.prefix'):
-                    prefix = config[key]['skype.prefix']
-                else:
-                    prefix = ""
                 room = config[key]['lingr']
                 verifier = config['lingr']['verifier']
                 for line in msg.Body.splitlines():
-                    text = '%s%s: %s' % (prefix, name, line)
+                    if name == 'IRC':
+                        text = line
+                    else:
+                        text = '%s: %s' % (name, line)
                     send_message(room, text, verifier)
                     if room == 'hametsu_mine' and line == ':minecraft':
                         for status in Minecraft().statuses():
-                            text = '%s%s: %s' % (prefix, 'minecraft', status)
+                            text = '%s: %s' % ('minecraft', status)
                             send_message(room, text, verifier)
 
 def bridge():

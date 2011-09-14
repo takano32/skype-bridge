@@ -44,7 +44,10 @@ def skype_handler(msg, event):
 				if config[key].has_key('irc'):
 					channel = config[key]['irc']
 					for line in msg.Body.splitlines():
-						text = '%s: %s' % (name, line)
+						if name == 'Lingr':
+							text = line
+						else:
+							text = '%s: %s' % (name, line)
 						bridge.say(channel, text.encode('utf-8'))
 						time.sleep(len(text) / 20.0)
 
