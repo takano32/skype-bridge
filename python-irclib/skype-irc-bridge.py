@@ -20,8 +20,10 @@ PORT = 6667
 CHANNEL = "#takano32bot"
 NICKNAME = "skype"
 COLOR_TAG = "\x0310" #aqua
-COLOR_TAG = "\x16" #reverse
+REVERSE_TAG = "\x16" #reverse
+NORMAL_TAG = "\x0F" #normal
 COLOR_TAG = "" #none
+
 
 from ircbot import SingleServerIRCBot
 from irclib import nm_to_n
