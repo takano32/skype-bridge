@@ -22,7 +22,7 @@ import Skype4Py
 from configobj import ConfigObj
 # config_path = os.path.join(os.path.dirname(sys.argv[0]), 'skype-lingr.conf')
 # config_path = os.path.join(os.path.dirname(os.environ['SCRIPT_FILENAME']), 'skype-lingr.conf')
-config_path = '/home/takano32/workspace/skype-lingr-bridge/Skype4Py/skype-lingr.conf'
+config_path = '/home/takano32/workspace/skype-bridge/Skype4Py/skype-bridge.conf'
 config = ConfigObj(config_path)
 
 if not os.environ.has_key('CONTENT_LENGTH'):

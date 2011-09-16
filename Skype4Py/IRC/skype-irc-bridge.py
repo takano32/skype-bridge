@@ -28,7 +28,7 @@ COLOR_TAG = "" #none
 from ircbot import SingleServerIRCBot
 from irclib import nm_to_n
 
-config = ConfigObj("skype-irc-bridge.conf")
+config = ConfigObj("../skype-bridge.conf")
 
 def skype_handler(msg, event):
 	if len(msg.Body) == 0:

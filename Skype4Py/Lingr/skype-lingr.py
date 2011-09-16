@@ -29,7 +29,7 @@ def handler(msg, event):
     if len(msg.Body) == 0:
         return
     if event == u"RECEIVED":
-        config = ConfigObj("skype-lingr.conf")
+        config = ConfigObj("/home/takano32/workspace/skype-bridge/Skype4Py/skype-bridge.conf")
         for key in config:
             if key == 'lingr' or key == 'skype':
                 continue
