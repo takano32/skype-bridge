@@ -1,6 +1,8 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-# vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
+# vim: noet sts=4:ts=4:sw=4
+# author: takano32
+#
 
 import sys
 sys.path.append('/usr/lib/pymodules/python2.5')
@@ -27,8 +29,7 @@ skype.Attach()
 room = skype.Chat(ROOM)
 
 for item in d['items'][:5]:
-	room.SendMessage(item.title)
-	room.SendMessage(item.link)
-	room.SendMessage("")
+    text = item.title + "\n" + item.link
+	room.SendMessage(text)
 
 
