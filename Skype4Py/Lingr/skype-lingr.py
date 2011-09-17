@@ -33,7 +33,7 @@ def handler(msg, event):
         for key in config:
             if key == 'lingr' or key == 'skype':
                 continue
-            if msg.ChatName == config[key]['skype']:
+            if config[key].has_key('skype') and msg.ChatName == config[key]['skype']:
                 name = msg.Sender.FullName
                 if len(name) == 0 or len(name) > 16:
                     name = msg.Sender.Handle
