@@ -34,7 +34,7 @@ if config.has_key('irc') and config['irc'].has_key('server'):
 	SERVER = config['irc']['server']
 
 if config.has_key('irc') and config['irc'].has_key('port'):
-	PORT = config['irc']['port']
+	PORT = int(config['irc']['port'])
 
 def skype_handler(msg, event):
 	if len(msg.Body) == 0:
