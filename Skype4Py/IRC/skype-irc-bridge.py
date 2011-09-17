@@ -30,6 +30,9 @@ from irclib import nm_to_n
 
 config = ConfigObj("../skype-bridge.conf")
 
+if config.has_key('irc') and config['irc'].has_key('server'):
+	SERVER = config['irc']['server']
+
 def skype_handler(msg, event):
 	if len(msg.Body) == 0:
 		return
