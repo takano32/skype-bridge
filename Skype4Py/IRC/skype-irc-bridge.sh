@@ -13,7 +13,7 @@ do
   if [ $EXISTS -ne 0 ]; then
     echo 'CRASH!!!!'
     date
-    python skype-irc-bridge.py &
+    sudo -u takano32 -E python skype-irc-bridge.py &
   fi
   sleep 5
 done
