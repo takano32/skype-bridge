@@ -16,6 +16,9 @@ skype-irc-bridge.py
 Debianでの環境の構築
 ^^^^^^^^^^^^^^^^^^^^
 
+X11またはX11らしい環境でSkypeを起動する
+  tightvncserver や Xbvf が使えるはず
+
 くらきい
   ららら
 
