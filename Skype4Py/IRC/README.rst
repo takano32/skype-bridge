@@ -5,7 +5,6 @@ Skype IRC Gateway
 skype-irc-bridge.py
 ===================
 
-
 必要なモジュール
 ----------------
 
@@ -24,13 +23,6 @@ X11またはX11らしい環境でSkypeを起動する
   /usr/bin/dbus-launch /usr/bin/tightvncserver :1
 
   tightvncvewer :1
-
-
-くらきい
-  ららら
-
-
-
 
 VNCサーバとSkypeの起動
 ----------------------
@@ -57,6 +49,7 @@ ToDo
 
 - 複数チャンネルに join する仕組みの確認
 
-
 - 小池にセットアップ方法を教えるときにドキュメントを整備
+
+  - 自分のアカウントと紐づけて利用するためのオプション
 
