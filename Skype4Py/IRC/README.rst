@@ -19,6 +19,13 @@ Debianでの環境の構築
 X11またはX11らしい環境でSkypeを起動する
   tightvncserver や Xbvf が使えるはず
 
+::
+
+  /usr/bin/dbus-launch /usr/bin/tightvncserver :1
+
+  tightvncvewer :1
+
+
 くらきい
   ららら
 
