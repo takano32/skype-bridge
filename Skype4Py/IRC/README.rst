@@ -20,9 +20,13 @@ X11またはX11らしい環境でSkypeを起動する
 
 ::
 
-  /usr/bin/dbus-launch /usr/bin/tightvncserver :1
+  $ /usr/bin/dbus-launch /usr/bin/tightvncserver :1
 
-  tightvncvewer :1
+  $ tightvncvewer :1
+
+- python-configobj
+
+- python-irclib
 
 VNCサーバとSkypeの起動
 ----------------------
