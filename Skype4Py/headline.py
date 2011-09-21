@@ -9,7 +9,7 @@ sys.path.append('/usr/lib/pymodules/python2.5')
 sys.path.append('/usr/lib/pymodules/python2.5/gtk-2.0')
 
 import os
-os.environ['DISPLAY'] = ":64"
+os.environ['DISPLAY'] = ":32"
 os.environ['XAUTHORITY'] = "/home/takano32/.Xauthority"
 
 ROOM="#yuiseki/$4425ae72bc11c305"
