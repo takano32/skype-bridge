@@ -7,7 +7,8 @@ import time
 import pprint
 import os
 
-os.environ['DISPLAY'] = ":32"
+os.environ['DISPLAY'] = ":16"
+os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
 pp = pprint.PrettyPrinter(indent = 4)
 
 def handler(msg, event):
@@ -32,6 +33,5 @@ def main():
     chat_list()
 
 if __name__ == "__main__":
-    # merge_bot()
     main()
 
