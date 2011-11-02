@@ -36,6 +36,9 @@ if config.has_key('irc') and config['irc'].has_key('server'):
 if config.has_key('irc') and config['irc'].has_key('port'):
 	PORT = int(config['irc']['port'])
 
+if config.has_key('irc') and config['irc'].has_key('wait'):
+	WAIT = float(config['irc']['wait'])
+
 def skype_handler(msg, event):
 	if len(msg.Body) == 0:
 		return
@@ -55,7 +58,10 @@ def skype_handler(msg, event):
 						else:
 							text = '%s: %s' % (name, line)
 						bridge.say(channel, text.encode('utf-8'))
-						time.sleep(len(text) / 20.0)
+						if WAIT != None:
+							time.sleep(WAIT)
+						else:
+							time.sleep(len(text) / 20.0)
 
 class SkypeIRCBridge(SingleServerIRCBot):
 	def __init__(self, skype, server = SERVER):
