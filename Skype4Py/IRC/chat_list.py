@@ -7,14 +7,11 @@ import time
 import pprint
 import os
 
-os.environ['DISPLAY'] = ":16"
-os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
+os.environ['DISPLAY'] = ":64"
 pp = pprint.PrettyPrinter(indent = 4)
 
 def handler(msg, event):
     if event == u"RECEIVED":
-        # pp.pprint(msg.Sender.FullName)
-        # print ""
         print "ChatName %s" % msg.ChatName
         print "Body %s" % msg.Body
         print ""
