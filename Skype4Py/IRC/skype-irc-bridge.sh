@@ -1,7 +1,7 @@
 #!/bin/sh
 
 export XAUTHORITY=/home/takano32/.Xauthority
-export DISPLAY=:64
+export DISPLAY=:16
 
 while :;
 do

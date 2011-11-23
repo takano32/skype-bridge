@@ -33,8 +33,8 @@ VNCサーバとSkypeの起動
 
 ::
 
-  /usr/bin/dbus-launch /usr/bin/tightvncserver :64
-  DISPLAY=:64 nohup /usr/bin/skype
+  /usr/bin/dbus-launch /usr/bin/tightvncserver :16
+  DISPLAY=:16
 
 デーモンを起動し続ける
 ----------------------
@@ -46,7 +46,7 @@ VNCサーバとSkypeの起動
 
 ::
 
-  DISPLAY=:64 python chat_list.py
+  DISPLAY=:16
 
 ToDo
 ----

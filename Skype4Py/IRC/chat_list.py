@@ -7,7 +7,7 @@ import time
 import pprint
 import os
 
-os.environ['DISPLAY'] = ":64"
+os.environ['DISPLAY'] = ":16"
 pp = pprint.PrettyPrinter(indent = 4)
 
 def handler(msg, event):
