@@ -6,7 +6,7 @@ sys.path.append('/usr/lib/pymodules/python2.5')
 sys.path.append('/usr/lib/pymodules/python2.5/gtk-2.0')
 
 import os
-os.environ['DISPLAY'] = ":16"
+os.environ['DISPLAY'] = ":64"
 os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
 
 import cgi

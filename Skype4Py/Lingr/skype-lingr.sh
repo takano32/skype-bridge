@@ -1,7 +1,7 @@
 #!/bin/sh
 
 export XAUTHORITY=/var/www/.Xauthority
-export DISPLAY=:16
+export DISPLAY=:64
 
 while :;
 do
@@ -12,6 +12,6 @@ do
     date
     sudo -u www-data -E python skype-lingr.py &
   fi
-  sleep 60
+  sleep 1
 done
 

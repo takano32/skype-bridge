@@ -15,8 +15,8 @@ from configobj import ConfigObj
 from minecraft import Minecraft
 
 
-os.environ['DISPLAY'] = ":16"
-os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
+#os.environ['DISPLAY'] = ":64"
+#os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
 pp = pprint.PrettyPrinter(indent = 4)
 
 def send_message(room, text, verifier):
