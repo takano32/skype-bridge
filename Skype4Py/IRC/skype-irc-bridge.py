@@ -17,6 +17,7 @@ pp = pprint.PrettyPrinter(indent = 4)
 
 SERVER = "irc.freenode.net"
 PORT = 6667
+WAIT = None
 CHANNEL = "#takano32bot"
 NICKNAME = "skype"
 COLOR_TAG = "\x0310" #aqua
