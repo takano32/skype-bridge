@@ -29,7 +29,7 @@ COLOR_TAG = "" #none
 from ircbot import SingleServerIRCBot
 from irclib import nm_to_n
 
-config = ConfigObj("../skype-bridge.conf")
+config = ConfigObj("skype-irc-bridge.conf")
 
 if config.has_key('irc') and config['irc'].has_key('server'):
 	SERVER = config['irc']['server']
