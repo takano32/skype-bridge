@@ -7,6 +7,8 @@
 import Skype4Py
 import os
 import time
+from SimpleXMLRPCServer import SimpleXMLRPCServer
+import sys, socket
 
 os.environ['DISPLAY'] = ":64"
 os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
@@ -14,6 +16,7 @@ os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
 class SkypeIrcBridge():
 	def __init__(self):
 		self.skype = Skype4Py.Skype()
+		self.start()
 
 	@staticmethod
 	def handler(msg, event):
@@ -27,8 +30,7 @@ class SkypeIrcBridge():
 		self.skype.Attach()
 
 if __name__ == "__main__":
-	bridge = SkypeIrcBridge()
-	bridge.start()
-	while True:
-		time.sleep(0.5)
+	sv = SimpleXMLRPCServer((socket.gethostname(), int(sys.argv[1])))
+	sv.register_instance(SkypeIrcBridge())
+	sv.serve_forever()
 
