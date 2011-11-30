@@ -25,6 +25,10 @@ class SkypeIrcBridge():
 			print "Body %s" % msg.Body
 			print ""
 
+	def say(self, channel, msg):
+		print msg
+		return True
+
 	def start(self):
 		self.skype.OnMessageStatus = SkypeIrcBridge.handler
 		self.skype.Attach()

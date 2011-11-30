@@ -57,3 +57,17 @@ ToDo
 
   - 自分のアカウントと紐づけて利用するためのオプション
 
+skype_irc_bridge
+================
+
+::
+
+  sudo -u www-data python skype_irc_bridge.py 3232
+
+irc_skype_bridge
+================
+
+::
+  
+  python irc_skype_bridge.py tellurium:3232
+

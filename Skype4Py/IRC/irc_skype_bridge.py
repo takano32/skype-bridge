@@ -10,8 +10,8 @@ def main():
 	peer = xmlrpclib.ServerProxy('http://' + sys.argv[1])
 	s = raw_input('>>')
 	while s:
-		room = None
-		peer.say(room, s)
+		room = u"hogefugafoooooo"
+		peer.say(room, unicode(s))
 		s = raw_input('>>')
 
 if __name__ == "__main__":
