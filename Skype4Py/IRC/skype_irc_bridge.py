@@ -5,6 +5,11 @@
 #
 
 import Skype4Py
+import os
+import time
+
+os.environ['DISPLAY'] = ":64"
+os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
 
 class SkypeIrcBridge():
 	def __init__(self):
@@ -17,13 +22,13 @@ class SkypeIrcBridge():
 			print "Body %s" % msg.Body
 			print ""
 
-	def start():
+	def start(self):
 		self.skype.OnMessageStatus = SkypeIrcBridge.handler
 		self.skype.Attach()
-		#while True:
-		#	time.sleep(1)
 
 if __name__ == "__main__":
 	bridge = SkypeIrcBridge()
 	bridge.start()
+	while True:
+		time.sleep(0.5)
 
