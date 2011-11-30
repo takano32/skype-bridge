@@ -7,20 +7,23 @@
 import Skype4Py
 
 class SkypeIrcBridge():
+	def __init__(self):
+		self.skype = Skype4Py.Skype()
 
-def handler(msg, event):
-	if event == u"RECEIVED":
-		print "ChatName %s" % msg.ChatName
-		print "Body %s" % msg.Body
-		print ""
+	@staticmethod
+	def handler(msg, event):
+		if event == u"RECEIVED":
+			print "ChatName %s" % msg.ChatName
+			print "Body %s" % msg.Body
+			print ""
 
-def start():
-	skype = Skype4Py.Skype()
-	skype.OnMessageStatus = handler
-	skype.Attach()
-    while True:
-        time.sleep(1)
+	def start():
+		self.skype.OnMessageStatus = SkypeIrcBridge.handler
+		self.skype.Attach()
+		#while True:
+		#	time.sleep(1)
 
 if __name__ == "__main__":
-	start()
+	bridge = SkypeIrcBridge()
+	bridge.start()
 
