@@ -9,9 +9,12 @@ import os
 import time
 from SimpleXMLRPCServer import SimpleXMLRPCServer
 import sys, socket
+from configobj import ConfigObj
 
 os.environ['DISPLAY'] = ":64"
 os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
+
+config = ConfigObj("skype-irc-bridge.conf")
 
 class SkypeIrcBridge():
 	def __init__(self):
@@ -26,7 +29,9 @@ class SkypeIrcBridge():
 			print ""
 
 	def say(self, channel, msg):
-		print msg
+		room = self.skype.Chat(config['arakawatomonori']['skype'])
+		#room = self.skype.Chat(channel)
+		room.SendMessage(msg)
 		return True
 
 	def start(self):
