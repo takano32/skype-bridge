@@ -7,7 +7,7 @@ import time
 import pprint
 import os
 
-os.environ['DISPLAY'] = ":16"
+os.environ['DISPLAY'] = ":64"
 os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
 pp = pprint.PrettyPrinter(indent = 4)
 

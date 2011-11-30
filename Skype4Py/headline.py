@@ -5,8 +5,8 @@
 #
 
 import sys
-sys.path.append('/usr/lib/pymodules/python2.5')
-sys.path.append('/usr/lib/pymodules/python2.5/gtk-2.0')
+#sys.path.append('/usr/lib/pymodules/python2.5')
+#sys.path.append('/usr/lib/pymodules/python2.5/gtk-2.0')
 
 import os
 os.environ['DISPLAY'] = ":32"
