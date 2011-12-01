@@ -68,6 +68,6 @@ if __name__ == "__main__":
 	sv = SimpleXMLRPCServer((host, int(port)))
 	bridge = IrcSkypeBridge()
 	bridge.start()
-	sv.register_instance(IrcSkypeBridge())
+	sv.register_instance(bridge)
 	sv.serve_forever()
 
