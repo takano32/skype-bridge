@@ -13,7 +13,7 @@ require 'rubytter'
 
 require 'json'
 
-require './frick'
+require ENV['HOME'] + '/workspace/skype-bridge/Skype4Py/Twitter/frick'
 
 puts "Content-Type: text/plain"
 puts ""
@@ -53,6 +53,16 @@ access_token = OAuth::AccessToken.new(
 client = OAuthRubytter.new(access_token)
 
 tweets.each do |tweet|
-	client.update(tweet)
+	if File.exists?('/tmp/gyazo') then
+		gyazo = %x(cat /tmp/gyazo)
+		url = Frick.new(gyazo.chomp).post(tweet)
+		client.update("#{tweet} #{url}")
+	else
+		if tweet =~ %r!^http://gyazo.! then
+			%x(echo '#{tweet.sub(%r!//gyazo!, "//cache.gyazo") + ".png"}' > /tmp/gyazo)
+		else
+			client.update(tweet)
+		end
+	end
 end
 
