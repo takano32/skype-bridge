@@ -13,6 +13,8 @@ require 'rubytter'
 
 require 'json'
 
+require './frick'
+
 puts "Content-Type: text/plain"
 puts ""
 
