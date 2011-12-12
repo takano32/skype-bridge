@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
 # vim: noet sts=4:ts=4:sw=4
 # author: takano32 <tak at no32.tk>
 #

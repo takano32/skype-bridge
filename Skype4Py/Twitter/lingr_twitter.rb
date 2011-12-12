@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
 # vim: noet sts=4:ts=4:sw=4
 # author: takano32 <tak@no32 dot tk>
 #
@@ -19,7 +20,7 @@ puts "Content-Type: text/plain"
 puts ""
 
 tweets = []
-from_lingr = JSON.parse(ARGF.read)
+from_lingr = JSON.parse(ARGF.read.force_encoding('UTF-8'))
 from_lingr["events"].each do |event|
 	if event["message"] then
 		tweets << event["message"]["text"]
@@ -53,13 +54,15 @@ access_token = OAuth::AccessToken.new(
 client = OAuthRubytter.new(access_token)
 
 tweets.each do |tweet|
+	# client.update(tweet + ' ')
 	if File.exists?('/tmp/gyazo') then
 		gyazo = %x(cat /tmp/gyazo)
 		url = Frick.new(gyazo.chomp).post(tweet)
 		client.update("#{tweet} #{url}")
+		File.delete('/tmp/gyazo')
 	else
 		if tweet =~ %r!^http://gyazo.! then
-			%x(echo '#{tweet.sub(%r!//gyazo!, "//cache.gyazo") + ".png"}' > /tmp/gyazo)
+			%x(echo '#{tweet.sub(%r!//gyazo!, "//cache.gyazo")}' > /tmp/gyazo)
 		else
 			client.update(tweet)
 		end

@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
 # vim: noet sts=4:ts=4:sw=4
 # author: takano32 <tak at no32.tk>
 #
@@ -19,6 +20,7 @@ class Frick
 	CONTENT_TYPE = 2
 	HOST = 'api.flickr.com'
 	CGI = '/services/upload/'
+	ENV['HOME'] = '/home/takano32'
 	def initialize(url)
 		@uri = URI.parse(url)
 		config = Pit.get("flickr",
@@ -29,16 +31,16 @@ class Frick
 			'auth_token' => 'flickr auth_token',
 		})
 
-		@api_key = config['api_key']
-		@secret = config['secret']
-		@frob = config['frob']
-		@auth_token = config['auth_token']
+		@api_key = config['api_key'].force_encoding('UTF-8')
+		@secret = config['secret'].force_encoding('UTF-8')
+		@frob = config['frob'].force_encoding('UTF-8')
+		@auth_token = config['auth_token'].force_encoding('UTF-8')
 	end
 
 	def post(title)
 		id = Time.new.strftime("%Y%m%d%H%M%S")
 		imagedata = open(@uri).read
-		boundary = '----BOUNDARYBOUNDARY----'
+		boundary = '----BOUNDARYBOUNDARY----'.encode('UTF-8')
 		api_sig = Digest::MD5.hexdigest("#{@secret}api_key#{@api_key}auth_token#{@auth_token}content_type#{CONTENT_TYPE}title#{title}")
 data = <<EOF
 --#{boundary}\r
@@ -65,7 +67,7 @@ content-disposition: form-data; name="title"\r
 content-disposition: form-data; name="photo"; filename="#{id}"\r
 content-type: image/png
 \r
-#{imagedata}\r
+#{imagedata.force_encoding('UTF-8')}\r
 \r
 --#{boundary}--\r
 EOF
@@ -93,7 +95,7 @@ EOF
 
 				# url = "http://farm#{farm}.static.flickr.com/#{server}/#{id}_#{secret}.jpg"
 				# http://www.flickr.com/photos/takano32/6481097191/in/photostream
-				url = "http://www.flickr.com/photos/takano32/#{id}.jpg"
+				url = "http://www.flickr.com/photos/takano32/#{id}/in/photostream"
 				return url
 			end
 		end
