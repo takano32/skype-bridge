@@ -24,6 +24,18 @@ def send_message(room, text, verifier):
     text = urllib.quote_plus(text.encode('utf-8'))
     request  = request % (room, 'skype', text, verifier)
     response = urllib2.urlopen(request)
+    if response.code != 200:
+        print 'HTTP Response Code is %d: %s' % (response.code, time.ctime(time.time()))
+        time.sleep(5)
+        send_message(room, text, verifier)
+
+def handler_with_try(msg, event):
+    try:
+        handler(msg, event)
+    except SkypeAPIError, err:
+        print 'Fault time is', time.ctime(time.time())
+        time.sleep(5)
+        handler(msg, event)
 
 def handler(msg, event):
     if len(msg.Body) == 0:
@@ -52,7 +64,7 @@ def handler(msg, event):
 
 def bridge():
     skype = Skype4Py.Skype()
-    skype.OnMessageStatus = handler
+    skype.OnMessageStatus = handler_with_try
     skype.Attach()
     while True:
         time.sleep(1)
