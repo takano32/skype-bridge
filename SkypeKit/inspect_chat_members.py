@@ -1,7 +1,3 @@
-print('****************************************************************************');
-print('SkypeKit Python Wrapper Tutorial: Sending and Receiving Chat Messages');
-print('****************************************************************************');
-
 # This example demonstrates, how to:
 # 1. Detect incoming text messages.
 # 2. Post text messages into a conversation.
@@ -80,10 +76,8 @@ def AccountOnChange (self, property_name):
 				print pant.identity
 				print pant.rank
 				print 
-	if property_name == 'status':
-		if self.status == 'LOGGED_IN':
-			loggedIn = True;
 			print('Login complete.');
+			loggedIn = True;
 
 Skype.Account.OnPropertyChange = AccountOnChange;
 
@@ -93,13 +87,11 @@ Skype.Account.OnPropertyChange = AccountOnChange;
 account = MySkype.GetAccount(accountName);
 
 print('Logging in with ' + accountName);
+print
 account.LoginWithPassword(accountPsw, False, False);
 
 while loggedIn == False:
 	sleep(1);
 
-print('Now accepting incoming chat messages.');
-print('Press ENTER to quit.');
-raw_input('');
-print('Exiting..');
 MySkype.stop();
+
