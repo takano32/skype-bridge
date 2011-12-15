@@ -58,7 +58,7 @@ hashtags = %w(
 	herokunomi
 )
 hashtag = ([''] + hashtags).join(' #')
-#hashtag = ""
+hashtag = ""
 
 tweets.each do |tweet|
 	# client.update(tweet + ' ')
