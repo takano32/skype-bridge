@@ -72,8 +72,8 @@ for event in from_lingr['events']:
             for line in text.splitlines():
                 msg = '%s: %s' % (name, line)
                 send_message(room, msg)
-skype.ResetCache()
-time.sleep(1.5)
+#skype.ResetCache()
+#time.sleep(1.5)
 print
 exit()
 # for debug
