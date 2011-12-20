@@ -11,7 +11,7 @@ import threading
 import os
 
 os.environ['DISPLAY'] = ":64"
-os.environ['XAUTHORITY'] = "/home/www/.Xauthority"
+os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
 
 CONFIG = ConfigObj("/home/takano32/workspace/skype-bridge/Skype4Py/skype-bridge.conf")
 
