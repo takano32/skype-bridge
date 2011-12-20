@@ -2,16 +2,11 @@
 # -*- coding: utf-8 -*-
 # vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
 import sys
-sys.path.append('/usr/lib/pymodules/python2.5')
-sys.path.append('/usr/lib/pymodules/python2.5/gtk-2.0')
-
 import os
 os.environ['DISPLAY'] = ":64"
 os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
 
-import cgi
 import json
-import time
 import re
 
 import pprint
@@ -20,8 +15,6 @@ pp = pprint.PrettyPrinter(indent = 4)
 import Skype4Py
 
 from configobj import ConfigObj
-# config_path = os.path.join(os.path.dirname(sys.argv[0]), 'skype-lingr.conf')
-# config_path = os.path.join(os.path.dirname(os.environ['SCRIPT_FILENAME']), 'skype-lingr.conf')
 config_path = '/home/takano32/workspace/skype-bridge/Skype4Py/skype-bridge.conf'
 config = ConfigObj(config_path)
 
@@ -72,8 +65,6 @@ for event in from_lingr['events']:
             for line in text.splitlines():
                 msg = '%s: %s' % (name, line)
                 send_message(room, msg)
-#skype.ResetCache()
-#time.sleep(1.5)
 print
 exit()
 # for debug
