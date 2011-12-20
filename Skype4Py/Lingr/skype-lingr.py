@@ -51,6 +51,7 @@ def handler(msg, event):
                     else:
                         text = '%s: %s' % (name, line)
                     send_message(room, text, verifier)
+                    return # below function is for minecraft
                     if room == 'hametsu_mine' and line == ':minecraft':
                         for status in Minecraft().statuses():
                             text = '%s: %s' % ('minecraft', status)
@@ -63,7 +64,7 @@ def bridge():
     for i in range(0, 300):
         time.sleep(1)
     skype.ResetCache()
-    skype.ClearChatHistory()
+    # skype.ClearChatHistory()
     exit()
 
 if __name__ == "__main__":
