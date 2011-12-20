@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 # vim: noet sts=4:ts=4:sw=4
-# author: takano32 <tak at no32.tk>
+# author: takano32 <tak@no32 dot tk>
 #
 
 from configobj import ConfigObj
