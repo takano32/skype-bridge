@@ -21,6 +21,7 @@ def send_message(room, text, verifier):
     response = urllib2.urlopen(request)
     if response.code != 200:
         print 'HTTP Response Code is %d: %s' % (response.code, time.ctime(time.time()))
+        time.sleep(3)
         send_message(room, text, verifier)
 
 def handler_with_try(msg, event):
@@ -51,7 +52,7 @@ def handler(msg, event):
                     else:
                         text = '%s: %s' % (name, line)
                     send_message(room, text, verifier)
-                    return # below function is for minecraft
+                    continue # below function is for minecraft
                     if room == 'hametsu_mine' and line == ':minecraft':
                         for status in Minecraft().statuses():
                             text = '%s: %s' % ('minecraft', status)
@@ -61,7 +62,7 @@ def bridge():
     skype = Skype4Py.Skype()
     skype.OnMessageStatus = handler_with_try
     skype.Attach()
-    for i in range(0, 300):
+    for i in range(0, 60 * 5):
         time.sleep(1)
     skype.ResetCache()
     # skype.ClearChatHistory()
