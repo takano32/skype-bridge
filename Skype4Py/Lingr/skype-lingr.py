@@ -3,8 +3,6 @@
 # vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
 import sys
-sys.path.append('/usr/lib/pymodules/python2.5')
-sys.path.append('/usr/lib/pymodules/python2.5/gtk-2.0')
 import Skype4Py
 import time
 import pprint
@@ -14,9 +12,6 @@ import cgi
 from configobj import ConfigObj
 from minecraft import Minecraft
 
-
-#os.environ['DISPLAY'] = ":64"
-#os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
 pp = pprint.PrettyPrinter(indent = 4)
 
 def send_message(room, text, verifier):
@@ -26,7 +21,6 @@ def send_message(room, text, verifier):
     response = urllib2.urlopen(request)
     if response.code != 200:
         print 'HTTP Response Code is %d: %s' % (response.code, time.ctime(time.time()))
-        time.sleep(5)
         send_message(room, text, verifier)
 
 def handler_with_try(msg, event):
@@ -66,12 +60,13 @@ def bridge():
     skype = Skype4Py.Skype()
     skype.OnMessageStatus = handler_with_try
     skype.Attach()
-    while True:
+    skype.ResetCache()
+    for i in range(0, 300):
         time.sleep(1)
-
-def main():
-    bridge()
+    skype.ResetCache()
+    skype.ClearChatHistory()
+    exit()
 
 if __name__ == "__main__":
-    main()
+    bridge()
 
