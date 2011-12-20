@@ -60,7 +60,6 @@ def bridge():
     skype = Skype4Py.Skype()
     skype.OnMessageStatus = handler_with_try
     skype.Attach()
-    skype.ResetCache()
     for i in range(0, 300):
         time.sleep(1)
     skype.ResetCache()
