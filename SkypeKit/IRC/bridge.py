@@ -6,8 +6,6 @@
 #
 
 import sys
-#sys.path.append('/usr/lib/pymodules/python2.5')
-#sys.path.append('/usr/lib/pymodules/python2.5/gtk-2.0')
 import os
 import Skype4Py
 import time
@@ -112,12 +110,6 @@ skype = Skype4Py.Skype()
 skype.OnMessageStatus = skype_handler
 skype.Attach()
 
-for key in config:
-	if key == 'lingr' or key == 'skype' or key == 'irc':
-		continue
-	if config[key].has_key('irc'):
-		channel = config[key]['irc']
-		room = config[key]['skype']
-		bridge = SkypeIRCBridge(skype)
-		bridge.start()
+bridge = SkypeIRCBridge(skype)
+bridge.start()
 
