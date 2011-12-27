@@ -54,8 +54,7 @@ access_token = OAuth::AccessToken.new(
 client = OAuthRubytter.new(access_token)
 
 hashtags = %w(
-	herokuja
-	herokunomi
+putya
 )
 hashtag = ([''] + hashtags).join(' #')
 hashtag = ""
