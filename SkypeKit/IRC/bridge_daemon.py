@@ -52,6 +52,7 @@ class SkypeDaemon():
 								nick = message.author_displayname
 								text = message.body_xml
 								global IRC_MESSAGES
+								print channel, text
 								IRC_MESSAGES.put((channel, nick, text))
 
 	@staticmethod
