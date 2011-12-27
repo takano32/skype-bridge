@@ -115,7 +115,6 @@ class Skype2IRC(SingleServerIRCBot):
 	on_pubmsg = do_command
 	on_privmsg = do_command
 
-if __name__ == "__main__":
-	bridge = Skype2IRC()
-	bridge.start()
+bridge = Skype2IRC()
+bridge.start()
 
