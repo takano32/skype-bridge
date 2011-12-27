@@ -56,7 +56,10 @@ class Skype2IRC(SingleServerIRCBot):
 		self.timer_handler()
 
 	def timer_handler(self):
-		message = self.daemon.pop_message()
+		try:
+			message = self.daemon.pop_message()
+		except ExpatError, err:
+			message = False
 		if message != False:
 			(channel, nick, text) = message
 			print time.ctime(time.time()), ': ', channel
