@@ -1,3 +1,5 @@
 # You will need to replace keyFileName with a valid keypair filename
-keyFileName = '/home/takano32/opt/SkypeKit/KeyPair.crt';
-distroRoot 	= '/home/takano32/opt/SkypeKit/skypekit-sdk';
+import os
+home = os.environ['HOME']
+keyFileName = home + '/opt/SkypeKit/KeyPair.crt';
+distroRoot 	= home + '/opt/SkypeKit/skypekit-sdk';
