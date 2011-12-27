@@ -59,7 +59,7 @@ class Skype2IRC(SingleServerIRCBot):
 	def timer_handler(self):
 		try:
 			message = self.daemon.pop_message()
-		except ExpatError, err:
+		except xml.parsers.expat.ExpatError, err:
 			message = False
 		if message != False:
 			(channel, nick, body_xml) = message
