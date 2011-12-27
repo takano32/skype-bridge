@@ -29,8 +29,6 @@ ACCOUNT_NAME = CONFIG['lingr']['skype_id']
 ACCOUNT_PSW = CONFIG['lingr']['skype_password']
 LOGGED_IN = False
 
-import Queue
-
 class SkypeDaemon():
 	def __init__(self):
 		global ACCOUNT_NAME, ACCOUNT_PSW
@@ -64,8 +62,7 @@ class SkypeDaemon():
 
 	@staticmethod
 	def OnMessage(self, message, changesInboxTimestamp, supersedesHistoryMessage, conversation):
-		global CONFIG
-		global ACCOUNT_NAME
+		global CONFIG, ACCOUNT_NAME
 		if message.author != ACCOUNT_NAME:
 			for key in CONFIG:
 				if key == 'skype' or key == 'lingr':

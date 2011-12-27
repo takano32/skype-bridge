@@ -18,7 +18,7 @@ sys.path.append(keypair.distroRoot + '/interfaces/skype/python');
 try:
 	import Skype;
 except ImportError:
-    raise SystemExit('Program requires Skype and skypekit modules');
+	raise SystemExit('Program requires Skype and skypekit modules');
 # END using SkypeKit
 
 CONFIG = ConfigObj("skype-bridge.conf")
