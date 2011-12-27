@@ -59,7 +59,7 @@ class SkypeDaemon():
 			if name == 'IRC':
 				text = line
 			else:
-				text = '%s: %s' % (name, text)
+				text = '%s: %s' % (name, line)
 			SkypeDaemon.SendMessage(room, text, verifier)
 
 	@staticmethod
