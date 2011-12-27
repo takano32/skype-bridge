@@ -12,6 +12,7 @@ import random
 import threading
 import xmlrpclib
 from configobj import ConfigObj
+import xml.etree.ElementTree
 
 pp = pprint.PrettyPrinter(indent = 4)
 
@@ -61,8 +62,12 @@ class Skype2IRC(SingleServerIRCBot):
 		except ExpatError, err:
 			message = False
 		if message != False:
-			(channel, nick, text) = message
+			(channel, nick, body_xml) = message
 			print time.ctime(time.time()), ': ', channel
+			elem = xml.etree.ElementTree.fromstring("<body>%s</body>" % body_xml.encode('utf-8'))
+			text = ""
+			for t in elem.itertext():
+				text += t
 			lines = text.splitlines()
 			if len(lines) == 1 and text.startswith('@'):
 				text = lines[0]

@@ -58,6 +58,8 @@ class SkypeDaemon():
 	def AccountOnChange(self, property_name):
 		print self.status
 		if property_name == 'status' and self.status == 'LOGGED_IN':
+			global ACCOUNT_NAME
+			print "Logging in with", ACCOUNT_NAME
 			global LOGGED_IN
 			LOGGED_IN = True
 
