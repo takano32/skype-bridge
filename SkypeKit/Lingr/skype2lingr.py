@@ -14,7 +14,7 @@ import threading
 # START using SkypeKit
 import sys
 import keypair
-from time import sleep
+import time
 
 sys.path.append(keypair.distroRoot + '/ipc/python');
 sys.path.append(keypair.distroRoot + '/interfaces/skype/python');
@@ -106,7 +106,7 @@ class SkypeDaemon():
 		account.LoginWithPassword(self.accountPsw, False, False)
 		print "logging in"
 		while LOGGED_IN == False:
-			sleep(1)
+			time.sleep(1)
 		print "logged in"
 
 	def stop(self):
