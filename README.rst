@@ -9,6 +9,8 @@ SkypeKit directory
 
   - Skype IRC Bridge
 
+  - Skype Lingr Bridge
+
 Skype4Py directory
 ==================
 
