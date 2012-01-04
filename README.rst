@@ -3,7 +3,7 @@ Repository for Skype
 ====================
 
 SkypeKit directory
-====================
+==================
 
 - using SkypeKit programs
 
