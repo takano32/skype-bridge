@@ -69,7 +69,7 @@ class SkypeDaemon():
 		LOGGED_IN = False
 		Skype.Skype.OnMessage = self.OnMessage;
 		try:
-			self.skype = Skype.GetSkype(keypair.keyFileName);
+			self.skype = Skype.GetSkype(keypair.keyFileName, port = 8962);
 		except Exception:
 			raise SystemExit('Unable to create skype instance');
 		Skype.Account.OnPropertyChange = self.AccountOnChange
