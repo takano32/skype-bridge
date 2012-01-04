@@ -30,7 +30,7 @@ class SkypeDaemon():
 		global ACCOUNT_NAME, ACCOUNT_PSW
 		self.accountName = ACCOUNT_NAME
 		self.accountPsw = ACCOUNT_PSW
-	
+
 	@staticmethod
 	def OnMessage(self, message, changesInboxTimestamp, supersedesHistoryMessage, conversation):
 		pass
