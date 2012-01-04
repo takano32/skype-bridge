@@ -8,8 +8,8 @@
 from configobj import ConfigObj
 from SimpleXMLRPCServer import SimpleXMLRPCServer
 import urllib, urllib2
+import json
 import xml.etree.ElementTree
-import threading
 
 # START using SkypeKit
 import sys
@@ -46,7 +46,20 @@ class SkypeDaemon():
 			print 'urllib2.HTTPError: %s' % time.ctime(time.time())
 			time.sleep(3)
 			SkypeDaemon.SendMessage(room, text, verifier)
-		if response.code != 200:
+		if response.code == 200:
+			res = json.JSONDecoder().decode(response.read())
+			if res.has_key('status'):
+				if res['status'] == 'ok':
+					return
+				else:
+					print 'Response status from Lingr: %s' % res['status']
+					time.sleep(3)
+					SkypeDaemon.SendMessage(room, text, verifier)
+			else:
+				print 'Response from Lingr dont have status code'
+				time.sleep(3)
+				SkypeDaemon.SendMessage(room, text, verifier)
+		else:
 			print 'HTTP Response Code is %d: %s' % (response.code, time.ctime(time.time()))
 			time.sleep(3)
 			SkypeDaemon.SendMessage(room, text, verifier)
@@ -67,9 +80,8 @@ class SkypeDaemon():
 			for key in CONFIG:
 				if key == 'skype' or key == 'lingr':
 						continue
-				if CONFIG[key].has_key('skype2lingr'):
-						if CONFIG[key]['skype2lingr'].title() == 'False':
-								continue
+				if CONFIG[key].has_key('skype2lingr') and CONFIG[key]['skype2lingr'].title() == 'False':
+					continue
 				if CONFIG[key].has_key('skype') and conversation.identity == CONFIG[key]['skype']:
 						if CONFIG[key].has_key('lingr'):
 								room = CONFIG[key]['lingr']
@@ -119,10 +131,6 @@ class SkypeDaemonServer():
 	def send_message(self, room, msg):
 		conv = self.skype.skype.GetConversationByIdentity(room)
 		conv.PostText(msg, False)
-		return True
-
-	def re_attach(self):
-		self.skype.login()
 		return True
 
 if __name__ == "__main__":
