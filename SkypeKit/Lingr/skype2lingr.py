@@ -66,7 +66,8 @@ class SkypeDaemon():
 	
 	@staticmethod
 	def SendMessageWithName(room, name, text, verifier):
-		for line in text.splitlines():
+		lines = text.splitlines()
+		for line in lines
 			if name == 'IRC':
 				text = line
 			else:
