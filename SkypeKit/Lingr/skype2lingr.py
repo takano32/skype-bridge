@@ -96,7 +96,8 @@ class SkypeDaemon():
 								for t in elem.itertext():
 									text += t
 								if len(text.splitlines()) == 1 and lingr.room_command(text):
-									conversation.PostText('System: Chatroom is bridging w/ http://lingr.com/room/%s' % room)
+									conversation.PostText('System: bridging w/ http://lingr.com/room/%s' % room)
+									return
 								print room, text
 								SkypeDaemon.SendMessageWithName(room, name, text, verifier)
 
