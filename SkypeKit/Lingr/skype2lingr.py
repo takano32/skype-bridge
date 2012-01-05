@@ -10,6 +10,7 @@ from SimpleXMLRPCServer import SimpleXMLRPCServer
 import urllib, urllib2
 import json
 import xml.etree.ElementTree
+import lingr
 
 # START using SkypeKit
 import sys
@@ -67,7 +68,7 @@ class SkypeDaemon():
 	@staticmethod
 	def SendMessageWithName(room, name, text, verifier):
 		lines = text.splitlines()
-		for line in lines
+		for line in lines:
 			if name == 'IRC':
 				text = line
 			else:
@@ -94,6 +95,8 @@ class SkypeDaemon():
 								text = ""
 								for t in elem.itertext():
 									text += t
+								if len(text.splitlines()) == 1 and lingr.room_command(text):
+									conversation.PostText('System: Chatroom is bridging w/ http://lingr.com/room/%s' % room)
 								print room, text
 								SkypeDaemon.SendMessageWithName(room, name, text, verifier)
 
