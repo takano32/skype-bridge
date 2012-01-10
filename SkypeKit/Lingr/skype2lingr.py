@@ -78,28 +78,30 @@ class SkypeDaemon():
 	@staticmethod
 	def OnMessage(self, message, changesInboxTimestamp, supersedesHistoryMessage, conversation):
 		global CONFIG, ACCOUNT_NAME
+		if message.timestamp < time.mktime(time.localtime()) - 300: return
 		if message.author != ACCOUNT_NAME:
 			for key in CONFIG:
 				if key == 'skype' or key == 'lingr':
 						continue
 				if CONFIG[key].has_key('skype2lingr') and CONFIG[key]['skype2lingr'].title() == 'False':
 					continue
-				if CONFIG[key].has_key('skype') and conversation.identity == CONFIG[key]['skype']:
-						if CONFIG[key].has_key('lingr'):
-								room = CONFIG[key]['lingr']
-								verifier = CONFIG['lingr']['verifier']
-								name = message.author_displayname
-								if len(name) == 0 or len(name) > 16:
-									name = message.author
-								elem = xml.etree.ElementTree.fromstring("<body>%s</body>" % message.body_xml.encode('utf-8'))
-								text = ""
-								for t in elem.itertext():
-									text += t
-								if len(text.splitlines()) == 1 and lingr.room_command(text):
-									conversation.PostText('System: bridging w/ http://lingr.com/room/%s' % room)
-									return
-								print room, text
-								SkypeDaemon.SendMessageWithName(room, name, text, verifier)
+				if not CONFIG[key].has_key('skype'): continue
+				if not conversation.identity == CONFIG[key]['skype']: continue
+				if CONFIG[key].has_key('lingr'):
+					room = CONFIG[key]['lingr']
+					verifier = CONFIG['lingr']['verifier']
+					name = message.author_displayname
+					if len(name) == 0 or len(name) > 16:
+						name = message.author
+					elem = xml.etree.ElementTree.fromstring("<body>%s</body>" % message.body_xml.encode('utf-8'))
+					text = ""
+					for t in elem.itertext():
+						text += t
+					if len(text.splitlines()) == 1 and lingr.room_command(text):
+						conversation.PostText('System: bridging w/ http://lingr.com/room/%s' % room)
+						return
+					print room, text
+					SkypeDaemon.SendMessageWithName(room, name, text, verifier)
 
 	@staticmethod
 	def AccountOnChange(self, property_name):
