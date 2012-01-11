@@ -1,6 +1,10 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-# vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
+# vim: noet sts=4:ts=4:sw=4
+# author: takano32 <tak@no32 dot tk>
+#
+
+
 import sys
 import os
 import json
@@ -38,10 +42,8 @@ for event in from_lingr['events']:
     for key in config:
         if key == 'lingr' or key == 'skype' or key == 'irc':
             continue
-        if not config[key].has_key('lingr'):
-            continue
-        if not config[key].has_key('skype'):
-            continue
+        if not config[key].has_key('lingr'): continue
+        if not config[key].has_key('skype'): continue
         if event['message']['room'] == config[key]['lingr']:
             text = event['message']['text']
             name = event['message']['nickname']
