@@ -4,7 +4,7 @@
 # author: takano32 <tak@no32 dot tk>
 #
 
-codes = ['NASDAQ:GOOG', 'NASDAQ:AAPL', 'TYO:3632', 'TYO:2432', 'TYO:3715', 'TYO:7733', 'NASDAQ:AKAM']
+codes = ['NASDAQ:AKAM', 'NASDAQ:GOOG', 'NASDAQ:AAPL', 'TYO:3632', 'TYO:2432', 'TYO:3715', 'TYO:7733']
 
 import urllib2
 from BeautifulSoup import BeautifulSoup
@@ -30,6 +30,6 @@ for code in codes:
 	l  = soup.find(id = re.compile('ref_[0-9]+_l')).text
 	c  = soup.find(id = re.compile('ref_[0-9]+_c')).text
 	cp = soup.find(id = re.compile('ref_[0-9]+_cp')).text
-	text = "[%s] %s %s JPY w/ %s %s" % (code, com, l, c, cp)
+	text = "[%s] %12s %12s JPY w/ %s %s" % (code, com, l, c, cp)
 	DAEMON.send_message(ROOM, text)
 
