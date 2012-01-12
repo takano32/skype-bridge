@@ -13,6 +13,7 @@ import re
 # Skype START
 from configobj import ConfigObj
 CONFIG = ConfigObj('skype-bridge.conf')
+ROOM = "#yuiseki/$4425ae72bc11c305"
 
 import xmlrpclib
 xmlrpc_host = CONFIG['bot']['xmlrpc_host']
