@@ -4,7 +4,7 @@
 # author: takano32 <tak@no32 dot tk>
 #
 
-codes = ['TYO:3632', 'TYO:2432']
+codes = ['TYO:3632', 'TYO:2432', 'TYO:3715', 'TYO:7733', 'NASDAQ:AKAM']
 
 import urllib2
 from BeautifulSoup import BeautifulSoup
@@ -31,5 +31,6 @@ for code in codes:
 	c  = soup.find(id = re.compile('ref_[0-9]+_c')).text
 	cp = soup.find(id = re.compile('ref_[0-9]+_cp')).text
 	text = "[%s] %s %s JPY w/ %s %s" % (code, com, l, c, cp)
+	print text
 	DAEMON.send_message(ROOM, text)
 

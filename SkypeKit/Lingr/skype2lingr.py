@@ -47,6 +47,7 @@ class SkypeDaemon():
 			print 'urllib2.HTTPError: %s' % time.ctime(time.time())
 			time.sleep(3)
 			SkypeDaemon.SendMessage(room, text, verifier)
+			return
 		if response.code == 200:
 			res = json.JSONDecoder().decode(response.read())
 			if res.has_key('status'):
