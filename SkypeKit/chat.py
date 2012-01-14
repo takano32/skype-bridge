@@ -48,6 +48,7 @@ loggedIn	= False;
 # contain smileys (try it!) and flag icons.
 
 def OnMessage(self, message, changesInboxTimestamp, supersedesHistoryMessage, conversation):
+	print conversation.identity, message.author, message.body_xml
 	if conversation.identity != '#yuiseki/$4425ae72bc11c305': return
 	if message.author != accountName:
 		print(message.author_displayname + ': ' + message.body_xml);
@@ -61,7 +62,7 @@ def OnMessage(self, message, changesInboxTimestamp, supersedesHistoryMessage, co
 Skype.Skype.OnMessage = OnMessage;
 
 try:
-	MySkype = Skype.GetSkype(keypair.keyFileName);
+	MySkype = Skype.GetSkype(keypair.keyFileName, port = 8888);
 except Exception:
 	raise SystemExit('Unable to create skype instance');
 
@@ -72,14 +73,14 @@ except Exception:
 
 def AccountOnChange (self, property_name):
 	global loggedIn;
-	if property_name == 'status':
-		if self.status == 'LOGGED_IN':
-			conv = MySkype.GetConversationByIdentity('#yuiseki/$4425ae72bc11c305')
-			pants = conv.GetParticipants()
-			for pant in pants:
-				print pant.identity
-				print pant.rank
-				print 
+	#if property_name == 'status':
+	#	if self.status == 'LOGGED_IN':
+	#		conv = MySkype.GetConversationByIdentity('#yuiseki/$4425ae72bc11c305')
+	#		pants = conv.GetParticipants()
+	#		for pant in pants:
+	#			print pant.identity
+	#			print pant.rank
+	#			print 
 	if property_name == 'status':
 		if self.status == 'LOGGED_IN':
 			loggedIn = True;
