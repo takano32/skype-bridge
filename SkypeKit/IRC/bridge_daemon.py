@@ -100,10 +100,6 @@ class SkypeDaemonServer():
 			message = False
 		return message
 
-	def re_attach(self):
-		self.skype.login()
-		return True
-
 if __name__ == "__main__":
 	host = CONFIG['irc']['xmlrpc_host']
 	port = CONFIG['irc']['xmlrpc_port']

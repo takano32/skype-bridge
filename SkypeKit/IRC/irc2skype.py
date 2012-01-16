@@ -96,7 +96,8 @@ class IRC2Skype(SingleServerIRCBot):
 					print time.ctime(time.time()), ': ', channel
 					self.send_message(room, nick, msg, notice)
 
-	def send_message(self, room, nick, msg, notice = False):
+	def send_message(self, room, nick, msg, notice = False, retry = 3):
+		if retry == 0: return
 		try:
 			if not notice and msg.startswith(u'@'):
 				self.skype.send_message(room, msg)
@@ -113,9 +114,7 @@ class IRC2Skype(SingleServerIRCBot):
 			print 'Fault time: ', time.ctime(time.time())
 			pp.pprint(room)
 			pp.pprint(text)
-			self.skype.re_attach()
-			time.sleep(random.random() * 10)
-			self.send_message(room, nick, msg, notice)
+			self.send_message(room, nick, msg, notice, retry - 1)
 
 	on_pubnotice = skype_handler_for_pubnotice
 	on_privnotice = do_command
