@@ -46,7 +46,17 @@ while True:
 		except Exception as err:
 			continue
 
-		if res.code == 200:
-			say(ROOM, url, VERIFIER)
-			exit()
+		try:
+			if res.code == 200:
+				for key, value in res.info().items():
+					if key.title() == 'Content-Length':
+						if int(value) > 8192:
+							say(ROOM, url, VERIFIER)
+							break
+						else:
+							raise
+		except Exception as err:
+			continue
+
+		exit()
 
