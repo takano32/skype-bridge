@@ -114,8 +114,6 @@ class IRC2Skype(SingleServerIRCBot):
 			print 'Fault time: ', time.ctime(time.time())
 			pp.pprint(room)
 			pp.pprint(text)
-			self.skype.re_attach()
-			time.sleep(random.random() * 10)
 			self.send_message(room, nick, msg, notice, retry - 1)
 
 	on_pubnotice = skype_handler_for_pubnotice
