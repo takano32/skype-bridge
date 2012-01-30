@@ -15,6 +15,7 @@ codes = [
 		'TYO:2121',    # mixi
 		'TYO:4751',    # CyberAgent
 		'TYO:3715',    # Dwango
+		'TYO:2193',    # COOKPAD
 		'TYO:7733',    # OLYMPUS
 		'TYO:6501',    # Hitachi
 		]
@@ -47,7 +48,8 @@ for code in codes:
 	if code.startswith('NASDAQ'): unit = 'USD'
 	c  = soup.find(id = re.compile('ref_[0-9]+_c')).text
 	cp = soup.find(id = re.compile('ref_[0-9]+_cp')).text
-	texts.append("[%-12s] %-16s %12s %s w/ %-12s %s" % (code, com, l, unit, c, cp) )
+	code = '[%s]' % code
+	texts.append("%-12s %-16s %12s %s w/ %-s %s" % (code, com, l, unit, c, cp) )
 
 text = "\n".join(texts)
 DAEMON.send_message(ROOM, text)
