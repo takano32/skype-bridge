@@ -95,10 +95,17 @@ class SkypeDaemon():
 				name = message.author_displayname
 				if len(name) == 0 or len(name) > 16:
 					name = message.author
-				elem = xml.etree.ElementTree.fromstring("<body>%s</body>" % message.body_xml.encode('utf-8'))
-				text = ""
-				for t in elem.itertext():
-					text += t
+
+				try:
+					elem = xml.etree.ElementTree.fromstring("<body>%s</body>" % message.body_xml.encode('utf-8'))
+					text = ""
+					for t in elem.itertext():
+						text += t
+				except Exception as err:
+					print message.body_xml.encode('utf-8')
+					print err
+					text = message.body_xml.encode('utf-8')
+
 				if len(text.splitlines()) == 1 and lingr.room_command(text):
 					conversation.PostText('System: bridging w/ http://lingr.com/room/%s' % room)
 					return
