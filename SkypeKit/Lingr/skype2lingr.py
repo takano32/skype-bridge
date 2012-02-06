@@ -48,6 +48,12 @@ class SkypeDaemon():
 			time.sleep(3)
 			SkypeDaemon.SendMessage(room, text, verifier)
 			return
+		except httplib.BadStatusLine as err:
+			print 'httplib.BadStatusLine: %s' % time.ctime(time.time())
+			time.sleep(3)
+			SkypeDaemon.SendMessage(room, text, verifier)
+			return
+
 		if response.code == 200:
 			res = json.JSONDecoder().decode(response.read())
 			if res.has_key('status'):
@@ -127,6 +133,7 @@ class SkypeDaemon():
 		Skype.Skype.OnMessage = self.OnMessage;
 		try:
 			self.skype = Skype.GetSkype(keypair.keyFileName, port = 8964)
+			self.skype.Start()
 		except Exception:
 			raise SystemExit('Unable to create skype instance');
 		Skype.Account.OnPropertyChange = self.AccountOnChange

@@ -49,15 +49,13 @@ loggedIn	= False;
 
 def OnMessage(self, message, changesInboxTimestamp, supersedesHistoryMessage, conversation):
 	print conversation.identity, message.author, message.body_xml
-	if conversation.identity != '#yuiseki/$4425ae72bc11c305': return
-	if message.author != accountName:
-		print(message.author_displayname + ': ' + message.body_xml);
-		if message.body_xml.find('(xss)') != -1:
-			msg = '''
-(\"';alert(String.fromCharCode(88,83,83)))()
-'''
-			conversation.PostText(msg, True);
-		# !!! conversation.PostText('Automated reply.', False);
+	#if conversation.identity != '#yuiseki/$4425ae72bc11c305': return
+	#if message.author != accountName:
+	#	print(message.author_displayname + ': ' + message.body_xml);
+	#	if message.body_xml.find('(xss)') != -1:
+	#		msg = '(\"\';alert(String.fromCharCode(88,83,83)))()'
+	#		conversation.PostText(msg, True);
+	#	# !!! conversation.PostText('Automated reply.', False);
 
 Skype.Skype.OnMessage = OnMessage;
 
