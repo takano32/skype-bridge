@@ -7,7 +7,7 @@
 
 from configobj import ConfigObj
 from SimpleXMLRPCServer import SimpleXMLRPCServer
-import urllib, urllib2
+import httplib, urllib, urllib2
 import json
 import xml.etree.ElementTree
 import lingr
@@ -43,10 +43,15 @@ class SkypeDaemon():
 		request  = request % (room, 'skype', text, verifier)
 		try:
 			response = urllib2.urlopen(request)
+		except urllib2.URLError as err:
+			print 'urllib2.URLError: %s' % time.ctime(time.time())
+			print room
+			return
 		except urllib2.HTTPError as err:
 			print 'urllib2.HTTPError: %s' % time.ctime(time.time())
-			time.sleep(3)
-			SkypeDaemon.SendMessage(room, text, verifier)
+			print room
+			#time.sleep(3)
+			#SkypeDaemon.SendMessage(room, text, verifier)
 			return
 		except httplib.BadStatusLine as err:
 			print 'httplib.BadStatusLine: %s' % time.ctime(time.time())
@@ -79,7 +84,14 @@ class SkypeDaemon():
 			if name == 'IRC':
 				text = line
 			else:
-				text = '%s: %s' % (name, line)
+				try:
+					text = '%s: %s' % (name, line)
+				except UnicodeDecodeError as err:
+					print 'UnicodeDecodeError: %s' % time.ctime(time.time())
+					print name
+					print line
+					print
+					return
 			SkypeDaemon.SendMessage(room, text, verifier)
 
 	@staticmethod
