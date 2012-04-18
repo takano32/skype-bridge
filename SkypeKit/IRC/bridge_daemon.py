@@ -28,6 +28,7 @@ LOGGED_IN = False
 
 import Queue
 IRC_MESSAGES = Queue.Queue()
+ROOMS = {}
 
 class SkypeDaemon():
 	def __init__(self):
@@ -89,7 +90,12 @@ class SkypeDaemonServer():
 		self.skype = skype
 
 	def send_message(self, room, msg):
-		conv = self.skype.skype.GetConversationByIdentity(room)
+		global ROOMS
+		if ROOMS.has_key(room):
+			conv = ROOMS[room]
+		else:
+			conv = self.skype.skype.GetConversationByIdentity(room)
+			ROOMS[room] = conv
 		conv.PostText(msg, False)
 		return True
 
