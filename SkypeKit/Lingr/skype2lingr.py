@@ -60,7 +60,10 @@ class SkypeDaemon():
 			return
 
 		if response.code == 200:
-			res = json.JSONDecoder().decode(response.read())
+			try:
+				res = json.JSONDecoder().decode(response.read())
+			except ValueError as err:
+				print err
 			if res.has_key('status'):
 				if res['status'] == 'ok':
 					return

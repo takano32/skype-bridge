@@ -5,6 +5,7 @@
 #
 communities = [
 		'co80029', # dark
+		'co571107', #test
 		]
 
 import urllib2
@@ -28,12 +29,19 @@ base_url = 'http://com.nicovideo.jp/community/'
 texts = []
 
 for community in communities:
-	html = opener.open(base_url + community).read()
+	url = base_url + community
+	html = opener.open(url).read()
 	soup = BeautifulSoup(html)
-	com = soup.find('a', {'class': 'community'}).text
-	print com
-	#texts.append("%-12s %-16s %12s %s w/ %-s %s" % (code, com, l, unit, c, cp) )
-
-#text = "\n".join(texts)
-#DAEMON.send_message(ROOM, text)
+	title = soup.find('title').text
+	com = soup.find('a', {'class': 'community'})
+	if com == None: continue
+	texts = []
+	texts.append('--')
+	texts.append(title)
+	texts.append(url)
+	texts.append(com.text)
+	texts.append(com['href'].replace(r'?ref=community', ''))
+	text = "\n".join(texts)
+	#DAEMON.send_message(ROOM, text)
+	print text
 
