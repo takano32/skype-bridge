@@ -10,7 +10,7 @@ communities = [
 
 import urllib2
 from BeautifulSoup import BeautifulSoup
-import re
+import re, time
 
 # Skype START
 from configobj import ConfigObj
@@ -26,22 +26,33 @@ DAEMON = xmlrpclib.ServerProxy('http://%s:%s' % (xmlrpc_host, xmlrpc_port))
 opener = urllib2.build_opener()
 
 base_url = 'http://com.nicovideo.jp/community/'
-texts = []
 
+latest_urls = {}
 for community in communities:
-	url = base_url + community
-	html = opener.open(url).read()
-	soup = BeautifulSoup(html)
-	title = soup.find('title').text
-	com = soup.find('a', {'class': 'community'})
-	if com == None: continue
-	texts = []
-	texts.append('--')
-	texts.append(title)
-	texts.append(url)
-	texts.append(com.text)
-	texts.append(com['href'].replace(r'?ref=community', ''))
-	text = "\n".join(texts)
-	#DAEMON.send_message(ROOM, text)
-	print text
+	latest_urls[community] = None
+
+while True:
+	for community in communities:
+		url = base_url + community
+		html = opener.open(url).read()
+		soup = BeautifulSoup(html)
+		title = soup.find('title').text
+		link = soup.find('a', {'class': 'community'})
+		if link == None: continue
+		texts = []
+		# community
+		#texts.append(title)
+		#texts.append(url)
+		texts.append(link.text)
+		href = link['href'].replace(r'?ref=community', '')
+		texts.append(href)
+		texts.append('--')
+		text = "\n".join(texts)
+		if latest_urls[community] == href: continue
+		latest_urls[community] = href
+
+		DAEMON.send_message(ROOM, text)
+		#print text
+	time.sleep(30.0)
+	print time.ctime(time.time())
 
