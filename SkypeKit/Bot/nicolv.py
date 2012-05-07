@@ -4,8 +4,13 @@
 # author: takano32 <tak@no32 dot tk>
 #
 communities = [
-		'co80029', # dark
-		'co571107', #test
+		'co80029',   # Dark
+		'co1513375', # Light
+		'co9320',    # プログラミング生放送
+		'co244678',  # 神回
+		# 'co23655',   # アリーナ
+		# 'co1024634', # まるはに
+		# 'co405315',  # プログラマ
 		]
 
 import urllib2
@@ -34,7 +39,13 @@ for community in communities:
 while True:
 	for community in communities:
 		url = base_url + community
-		html = opener.open(url).read()
+		try:
+			html = opener.open(url).read()
+		except Exception as err:
+			print err
+			print community
+			print
+			continue
 		soup = BeautifulSoup(html)
 		title = soup.find('title').text
 		link = soup.find('a', {'class': 'community'})
