@@ -20,7 +20,7 @@ import re, time
 # Skype START
 from configobj import ConfigObj
 CONFIG = ConfigObj('skype-bridge.conf')
-ROOM = "#yuiseki/$4425ae72bc11c305"
+ROOMS = [ '#yuiseki/$4425ae72bc11c305', '#pha_pha_/$7604f24b1d42a542' ]
 
 import xmlrpclib
 xmlrpc_host = CONFIG['bot']['xmlrpc_host']
@@ -62,7 +62,8 @@ while True:
 		if latest_urls[community] == href: continue
 		latest_urls[community] = href
 
-		DAEMON.send_message(ROOM, text)
+		for room in ROOMS:
+			DAEMON.send_message(room, text)
 		#print text
 	time.sleep(30.0)
 	print time.ctime(time.time())
