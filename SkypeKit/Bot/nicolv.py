@@ -13,6 +13,10 @@ communities = [
 		# 'co405315',  # プログラマ
 		]
 
+ROOMS = [
+		'#yuiseki/$4425ae72bc11c305',
+		#'#pha_pha_/$7604f24b1d42a542',
+	]
 import urllib2
 from BeautifulSoup import BeautifulSoup
 import re, time
@@ -20,7 +24,6 @@ import re, time
 # Skype START
 from configobj import ConfigObj
 CONFIG = ConfigObj('skype-bridge.conf')
-ROOMS = [ '#yuiseki/$4425ae72bc11c305', '#pha_pha_/$7604f24b1d42a542' ]
 
 import xmlrpclib
 xmlrpc_host = CONFIG['bot']['xmlrpc_host']
