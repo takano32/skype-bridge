@@ -6,6 +6,7 @@
 communities = [
 		'co80029',   # Dark
 		'co1513375', # Light
+		'co600306',  # np-complete
 		'co9320',    # プログラミング生放送
 		# 'co244678',  # 神回
 		# 'co23655',   # アリーナ
