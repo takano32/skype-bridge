@@ -17,6 +17,7 @@ communities = [
 ROOMS = [
 		'#yuiseki/$4425ae72bc11c305',
 		#'#pha_pha_/$7604f24b1d42a542',
+		#"#takano32/$d380f06c719822e7",
 		]
 
 import urllib2
