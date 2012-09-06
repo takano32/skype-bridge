@@ -54,23 +54,32 @@ access_token = OAuth::AccessToken.new(
 client = OAuthRubytter.new(access_token)
 
 hashtags = %w(
-putya
+	tqrk05
 )
+
 hashtag = ([''] + hashtags).join(' #')
 hashtag = ""
+
+url = "http://pinterest.com/takaoka/sushi/"
+url = "http://nicofarre.jp/event.php?id=80"
+url = "http://bit.ly/uWWMq"
+url = "http://atnd.org/events/26455"
+url = "http://takano32.blogspot.jp/search/label/keitahaga"
+url = "http://ustre.am/5ec"
+url = ""
 
 tweets.each do |tweet|
 	# client.update(tweet + ' ')
 	if File.exists?('/tmp/gyazo') then
 		gyazo = %x(cat /tmp/gyazo)
-		url = Frick.new(gyazo.chomp).post(tweet)
-		client.update("#{tweet} #{url} #{hashtag}")
+		img = Frick.new(gyazo.chomp).post(tweet)
+		client.update("#{tweet} #{img} #{hashtag} #{url}")
 		File.delete('/tmp/gyazo')
 	else
 		if tweet =~ %r!^http://gyazo.! then
 			%x(echo '#{tweet.sub(%r!//gyazo!, "//cache.gyazo").sub(%r!(\.png)?$!, '.png')}' > /tmp/gyazo)
 		else
-			client.update(tweet + hashtag)
+			client.update("#{tweet} #{hashtag} #{url}")
 		end
 	end
 end

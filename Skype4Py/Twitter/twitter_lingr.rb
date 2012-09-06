@@ -13,7 +13,7 @@ require 'rubytter'
 require 'open-uri'
 def say(text)
 	v = Digest::SHA1.hexdigest("tweet"+"RVuGW2N01hAUcHMwpQOsBey5zol")
-	url = "http://lingr.com/api/room/say?room=takano32&bot=tweet&text=#{text}&bot_verifier=#{v}"
+	url = "http://lingr.com/api/room/say?room=takano32twitter&bot=tweet&text=#{text}&bot_verifier=#{v}"
 	open(url)
 end
 
