@@ -20,7 +20,7 @@ except ImportError:
 	raise SystemExit('Program requires Skype and skypekit modules');
 # END using SkypeKit
 
-CONFIG = ConfigObj("skype-bridge.conf")
+CONFIG = ConfigObj("../skype-bridge.conf")
 ACCOUNT_NAME = CONFIG['bot']['skype_id']
 ACCOUNT_PSW = CONFIG['bot']['skype_password']
 LOGGED_IN = False

@@ -27,7 +27,7 @@ import re, time
 
 # Skype START
 from configobj import ConfigObj
-CONFIG = ConfigObj('skype-bridge.conf')
+CONFIG = ConfigObj('../skype-bridge.conf')
 
 import xmlrpclib
 xmlrpc_host = CONFIG['bot']['xmlrpc_host']
