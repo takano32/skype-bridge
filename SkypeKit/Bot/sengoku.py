@@ -15,5 +15,9 @@ xmlrpc_port = CONFIG['bot']['xmlrpc_port']
 DAEMON = xmlrpclib.ServerProxy('http://%s:%s' % (xmlrpc_host, xmlrpc_port))
 # Skype END
 
-DAEMON.send_message(ROOM, "戰じゃ〜！出陣せよ〜！")
+text = []
+text.append('(devil) 戰じゃ〜！出陣せよ〜！ (devil)')
+text.append('7:00~8:00 / 12:00~13:00 / 19:00~20:00 / 22:00~23:00')
+
+DAEMON.send_message(ROOM, "\n".join(text))
 

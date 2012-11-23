@@ -56,20 +56,16 @@ class SkypeDaemon():
 		Skype.Account.OnPropertyChange = self.AccountOnChange
 		account = self.skype.GetAccount(self.accountName)
 		account.LoginWithPassword(self.accountPsw, False, False)
-		print "logging in"
+		print "logging in..."
 		while LOGGED_IN == False:
 			time.sleep(1)
-		print "logged in"
+		print "login successfully."
 
 	def stop(self):
 		self.skype.stop()
 
-class SkypeDaemonServer():
-	def __init__(self, skype):
-		self.skype = skype
-
 	def send_message(self, room, msg):
-		conv = self.skype.skype.GetConversationByIdentity(room)
+		conv = self.skype.GetConversationByIdentity(room)
 		conv.PostText(msg, False)
 		return True
 
@@ -80,8 +76,7 @@ if __name__ == "__main__":
 	port = CONFIG['bot']['xmlrpc_port']
 	sd = SkypeDaemon()
 	sd.login()
-	sds = SkypeDaemonServer(sd)
 	sv = SimpleXMLRPCServer((host, int(port)))
-	sv.register_instance(sds)
+	sv.register_instance(sd)
 	sv.serve_forever()
 
