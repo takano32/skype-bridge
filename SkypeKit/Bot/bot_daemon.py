@@ -33,7 +33,7 @@ class SkypeDaemon():
 
 	@staticmethod
 	def OnMessage(self, message, changesInboxTimestamp, supersedesHistoryMessage, conversation):
-		pass
+		if message.author == ACCOUNT_NAME: return
 
 	@staticmethod
 	def AccountOnChange(self, property_name):

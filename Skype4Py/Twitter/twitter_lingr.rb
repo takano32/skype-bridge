@@ -12,6 +12,7 @@ require 'rubytter'
 
 require 'open-uri'
 def say(text)
+	text = URI.encode text
 	v = Digest::SHA1.hexdigest("tweet"+"RVuGW2N01hAUcHMwpQOsBey5zol")
 	url = "http://lingr.com/api/room/say?room=takano32twitter&bot=tweet&text=#{text}&bot_verifier=#{v}"
 	open(url)
@@ -50,7 +51,9 @@ loop do
 			next unless last_id < status[:id]
 			nick = status[:user][:screen_name]
 			tweet = status[:text]
-			say URI.encode("#{nick}: #{tweet}")
+			text = "#{nick}: #{tweet}"
+			puts text
+			say text
 			last_id = status[:id]
 		end
 	rescue

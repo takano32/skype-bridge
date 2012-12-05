@@ -54,7 +54,7 @@ access_token = OAuth::AccessToken.new(
 client = OAuthRubytter.new(access_token)
 
 hashtags = %w(
-	tqrk05
+	chromejp
 )
 
 hashtag = ([''] + hashtags).join(' #')
