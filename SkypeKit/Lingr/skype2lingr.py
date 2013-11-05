@@ -11,6 +11,7 @@ import httplib, urllib, urllib2
 import json
 import xml.etree.ElementTree
 import lingr
+import re
 
 # START using SkypeKit
 import sys
@@ -35,7 +36,7 @@ class SkypeDaemon():
 		global ACCOUNT_NAME, ACCOUNT_PSW
 		self.accountName = ACCOUNT_NAME
 		self.accountPsw = ACCOUNT_PSW
-	
+
 	@staticmethod
 	def SendMessage(room, text, verifier):
 		request = "http://lingr.com/api/room/say?room=%s&bot=%s&text=%s&bot_verifier=%s"
@@ -79,7 +80,7 @@ class SkypeDaemon():
 			print 'HTTP Response Code is %d: %s' % (response.code, time.ctime(time.time()))
 			time.sleep(3)
 			SkypeDaemon.SendMessage(room, text, verifier)
-	
+
 	@staticmethod
 	def SendMessageWithName(room, name, text, verifier):
 		lines = text.splitlines()
@@ -131,6 +132,9 @@ class SkypeDaemon():
 					conversation.PostText('System: bridging w/ http://lingr.com/room/%s' % room)
 					return
 				print room, text
+				# discard_private_code = re.compile('[\uE000-\uF8FF]'.encode('utf-8'))
+				# name = discard_private_code.sub('', name)
+				# text = discard_private_code.sub('', text)
 				SkypeDaemon.SendMessageWithName(room, name, text, verifier)
 
 	@staticmethod
