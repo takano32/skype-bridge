@@ -54,11 +54,10 @@ access_token = OAuth::AccessToken.new(
 client = OAuthRubytter.new(access_token)
 
 hashtags = %w(
-	chromejp
+	rubykaigi
 )
 
-hashtag = ([''] + hashtags).join(' #')
-hashtag = ""
+hashtag = hashtags.empty? ? '' : ([''] + hashtags).join(' #')
 
 url = "http://pinterest.com/takaoka/sushi/"
 url = "http://nicofarre.jp/event.php?id=80"
@@ -66,7 +65,8 @@ url = "http://bit.ly/uWWMq"
 url = "http://atnd.org/events/26455"
 url = "http://takano32.blogspot.jp/search/label/keitahaga"
 url = "http://ustre.am/5ec"
-url = ""
+url = 'http://www.ustream.tv/channel/wakamonog'
+url = ''
 
 tweets.each do |tweet|
 	# client.update(tweet + ' ')
