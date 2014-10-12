@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
 import sys
-sys.path.insert(0, '/usr/lib/pymodules/python2.5')
+sys.path.insert(0, '/usr/lib/pymodules/python2.7')
 import urllib, urllib2
 import cgi
 

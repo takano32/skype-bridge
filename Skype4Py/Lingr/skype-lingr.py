@@ -27,7 +27,8 @@ def send_message(room, text, verifier):
 def handler_with_try(msg, event):
     try:
         handler(msg, event)
-    except SkypeAPIError, err:
+    except Exception, err:
+        print(err)
         print 'Fault time is', time.ctime(time.time())
         time.sleep(5)
         handler(msg, event)
@@ -50,7 +51,10 @@ def handler(msg, event):
                     if name == 'IRC':
                         text = line
                     else:
-                        text = '%s: %s' % (name, line)
+                        if line.startswith('http://') or line.startswith('https://'):
+                            text = '%s: \n%s' % (name, line)
+                        else:
+                            text = '%s: %s' % (name, line)
                     send_message(room, text, verifier)
                     continue # below function is for minecraft
                     if room == 'hametsu_mine' and line == ':minecraft':
@@ -62,7 +66,7 @@ def bridge():
     skype = Skype4Py.Skype()
     skype.OnMessageStatus = handler_with_try
     skype.Attach()
-    for i in range(0, 60 * 5):
+    for i in range(0, 60 * 60 * 24):
         time.sleep(1)
     skype.ResetCache()
     # skype.ClearChatHistory()

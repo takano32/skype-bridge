@@ -7,8 +7,10 @@ import time
 import pprint
 import os
 
+# os.environ['DISPLAY'] = ":64"
+# os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
 os.environ['DISPLAY'] = ":64"
-os.environ['XAUTHORITY'] = "/var/www/.Xauthority"
+os.environ['XAUTHORITY'] = "/takano32/home/.Xauthority"
 pp = pprint.PrettyPrinter(indent = 4)
 
 def handler(msg, event):
