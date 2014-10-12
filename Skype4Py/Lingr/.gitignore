@@ -1,3 +1,4 @@
 *.conf
 *.pyc
 nohup.out
+/.ropeproject/
